@@ -1,16 +1,16 @@
 <?php
 
-namespace CraigPaul\Moneris;
+namespace LuniuMall\Moneris;
 
 /**
- * CraigPaul\Moneris\Response
+ * LuniuMall\Moneris\Response
  *
  * @property array $errors
  * @property bool $failedAvs
  * @property bool $failedCvd
  * @property null|int $status
  * @property bool $successful
- * @property \CraigPaul\Moneris\Transaction $transaction
+ * @property \LuniuMall\Moneris\Transaction $transaction
  */
 class Response
 {
@@ -83,14 +83,14 @@ class Response
     protected $successful = true;
 
     /**
-     * @var \CraigPaul\Moneris\Transaction
+     * @var \LuniuMall\Moneris\Transaction
      */
     protected $transaction;
 
     /**
      * Create a new Response instance.
      *
-     * @param \CraigPaul\Moneris\Transaction $transaction
+     * @param \LuniuMall\Moneris\Transaction $transaction
      */
     public function __construct(Transaction $transaction)
     {
@@ -100,7 +100,7 @@ class Response
     /**
      * Create a new Response instance.
      *
-     * @param \CraigPaul\Moneris\Transaction $transaction
+     * @param \LuniuMall\Moneris\Transaction $transaction
      *
      * @return $this
      */
@@ -112,7 +112,7 @@ class Response
     /**
      * Retrieve the transaction's receipt if it is available.
      *
-     * @return \CraigPaul\Moneris\Receipt|null
+     * @return \LuniuMall\Moneris\Receipt|null
      */
     public function receipt()
     {

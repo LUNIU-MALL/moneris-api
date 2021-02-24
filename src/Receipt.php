@@ -1,6 +1,6 @@
 <?php
 
-namespace CraigPaul\Moneris;
+namespace LuniuMall\Moneris;
 
 class Receipt
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace CraigPaul\Moneris;
+namespace LuniuMall\Moneris;
 
 use SimpleXMLElement;
 
 /**
- * CraigPaul\Moneris\Gateway
+ * LuniuMall\Moneris\Gateway
  *
  * @property-read array $errors
- * @property-read \CraigPaul\Moneris\Gateway $gateway
+ * @property-read \LuniuMall\Moneris\Gateway $gateway
  * @property-read array $params
  * @property \SimpleXMLElement|null $response
  */
@@ -30,7 +30,7 @@ class Transaction
     /**
      * The Gateway instance.
      *
-     * @var \CraigPaul\Moneris\Gateway
+     * @var \LuniuMall\Moneris\Gateway
      */
     protected $gateway;
 
@@ -49,7 +49,7 @@ class Transaction
     /**
      * Create a new Transaction instance.
      *
-     * @param \CraigPaul\Moneris\Gateway $gateway
+     * @param \LuniuMall\Moneris\Gateway $gateway
      * @param array $params
      */
     public function __construct(Gateway $gateway, array $params = [])
@@ -583,7 +583,7 @@ class Transaction
                         ];
                     }
                     break;
-                    
+
                 case 'applepay_token_purchase':
                     $errors[] = isset($params['order_id']) ? null : [
                         'field' => 'order_id',
@@ -664,7 +664,7 @@ class Transaction
      *
      * @param \SimpleXMLElement $result
      *
-     * @return \CraigPaul\Moneris\Response
+     * @return \LuniuMall\Moneris\Response
      */
     public function validate(SimpleXMLElement $result)
     {

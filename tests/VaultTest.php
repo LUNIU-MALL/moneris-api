@@ -1,12 +1,12 @@
 <?php
 
 use Faker\Factory as Faker;
-use CraigPaul\Moneris\Vault;
-use CraigPaul\Moneris\Moneris;
-use CraigPaul\Moneris\Customer;
-use CraigPaul\Moneris\Processor;
-use CraigPaul\Moneris\CreditCard;
-use CraigPaul\Moneris\Transaction;
+use LuniuMall\Moneris\Vault;
+use LuniuMall\Moneris\Moneris;
+use LuniuMall\Moneris\Customer;
+use LuniuMall\Moneris\Processor;
+use LuniuMall\Moneris\CreditCard;
+use LuniuMall\Moneris\Transaction;
 
 class VaultTest extends TestCase
 {
@@ -18,7 +18,7 @@ class VaultTest extends TestCase
     protected $billing;
 
     /**
-     * @var \CraigPaul\Moneris\CreditCard
+     * @var \LuniuMall\Moneris\CreditCard
      */
     protected $card;
 
@@ -40,7 +40,7 @@ class VaultTest extends TestCase
     protected $params;
 
     /**
-     * @var \CraigPaul\Moneris\Vault
+     * @var \LuniuMall\Moneris\Vault
      */
     protected $vault;
 
@@ -277,9 +277,9 @@ class VaultTest extends TestCase
         $this->assertTrue($response->successful);
         $this->assertGreaterThan(0, count($receipt->read('data')));
 
-        /** @var \CraigPaul\Moneris\Response $card */
+        /** @var \LuniuMall\Moneris\Response $card */
         foreach ($cards as $index => $card) {
-            /** @var \CraigPaul\Moneris\Receipt $rec */
+            /** @var \LuniuMall\Moneris\Receipt $rec */
             $rec = $card->receipt();
 
             $this->assertEquals($rec->read('key'), $receipt->read('data')[$index]['data_key']);
