@@ -1,6 +1,6 @@
 <?php
 
-namespace LuniuMall\Moneris;
+namespace luniu-mall\Moneris;
 
 use GuzzleHttp\Client;
 
@@ -62,9 +62,9 @@ class Processor
      * Determine if the request is valid. If so, process the
      * transaction via the Moneris API.
      *
-     * @param \LuniuMall\Moneris\Transaction $transaction
+     * @param \luniu-mall\Moneris\Transaction $transaction
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \luniu-mall\Moneris\Response
      */
     public function process(Transaction $transaction)
     {
@@ -117,7 +117,7 @@ class Processor
     /**
      * Submit the transaction to the Moneris API.
      *
-     * @param \LuniuMall\Moneris\Transaction $transaction
+     * @param \luniu-mall\Moneris\Transaction $transaction
      *
      * @return \SimpleXMLElement|string
      */

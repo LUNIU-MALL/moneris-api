@@ -14,7 +14,7 @@ PHP 5.6 and later
 To get started, install the package via the Composer package manager:
 
 ```php
-composer require LuniuMall/moneris-api
+composer require luniu-mall/moneris-api
 ```
 
 ## Instantiation
@@ -22,7 +22,7 @@ composer require LuniuMall/moneris-api
 Creating a new Moneris instance is quite easy and straightforward.
 
 ```php
-use LuniuMall\Moneris\Moneris;
+use luniu-mall\Moneris\Moneris;
 
 ...
 
@@ -41,7 +41,7 @@ $gateway = (new Moneris($id, $token, $params))->connect();
 ```
 
 ```php
-use LuniuMall\Moneris\Moneris;
+use luniu-mall\Moneris\Moneris;
 
 ...
 
@@ -254,7 +254,7 @@ $vault = $gateway->cards();
 > **Note:** The expiry passed into the credit card is in the format of YYMM as that is how Moneris accepts it.
 
 ```php
-use LuniuMall\Moneris\CreditCard;
+use luniu-mall\Moneris\CreditCard;
 
 ...
 
@@ -296,7 +296,7 @@ In order to sync your customer information with the credit cards stored in the V
 #### Add a Card
 
 ```php
-use LuniuMall\Moneris\Customer;
+use luniu-mall\Moneris\Customer;
 
 ...
 
@@ -317,7 +317,7 @@ $response = $vault->add($card);
 #### Update a Card and Customer
 
 ```php
-use LuniuMall\Moneris\Customer;
+use luniu-mall\Moneris\Customer;
 
 ...
 
@@ -554,12 +554,12 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 Moneris API is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-[ico-version]: https://img.shields.io/packagist/v/LuniuMall/moneris-api.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/luniu-mall/moneris-api.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/LuniuMall/moneris-api/master.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/LuniuMall/moneris-api.svg?style=flat-square
-[link-packagist]: https://packagist.org/packages/LuniuMall/moneris-api
-[link-travis]: https://travis-ci.org/LuniuMall/moneris-api
-[link-downloads]: https://packagist.org/packages/LuniuMall/moneris-api
-[link-author]: https://github.com/LuniuMall
+[ico-travis]: https://img.shields.io/travis/luniu-mall/moneris-api/master.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/luniu-mall/moneris-api.svg?style=flat-square
+[link-packagist]: https://packagist.org/packages/luniu-mall/moneris-api
+[link-travis]: https://travis-ci.org/luniu-mall/moneris-api
+[link-downloads]: https://packagist.org/packages/luniu-mall/moneris-api
+[link-author]: https://github.com/luniu-mall
 [link-contributors]: ../../contributors

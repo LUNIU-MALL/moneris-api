@@ -1,16 +1,16 @@
 <?php
 
-namespace LuniuMall\Moneris;
+namespace luniu-mall\Moneris;
 
 /**
- * LuniuMall\Moneris\Response
+ * luniu-mall\Moneris\Response
  *
  * @property array $errors
  * @property bool $failedAvs
  * @property bool $failedCvd
  * @property null|int $status
  * @property bool $successful
- * @property \LuniuMall\Moneris\Transaction $transaction
+ * @property \luniu-mall\Moneris\Transaction $transaction
  */
 class Response
 {
@@ -83,14 +83,14 @@ class Response
     protected $successful = true;
 
     /**
-     * @var \LuniuMall\Moneris\Transaction
+     * @var \luniu-mall\Moneris\Transaction
      */
     protected $transaction;
 
     /**
      * Create a new Response instance.
      *
-     * @param \LuniuMall\Moneris\Transaction $transaction
+     * @param \luniu-mall\Moneris\Transaction $transaction
      */
     public function __construct(Transaction $transaction)
     {
@@ -100,7 +100,7 @@ class Response
     /**
      * Create a new Response instance.
      *
-     * @param \LuniuMall\Moneris\Transaction $transaction
+     * @param \luniu-mall\Moneris\Transaction $transaction
      *
      * @return $this
      */
@@ -112,7 +112,7 @@ class Response
     /**
      * Retrieve the transaction's receipt if it is available.
      *
-     * @return \LuniuMall\Moneris\Receipt|null
+     * @return \luniu-mall\Moneris\Receipt|null
      */
     public function receipt()
     {

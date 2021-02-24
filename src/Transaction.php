@@ -1,14 +1,14 @@
 <?php
 
-namespace LuniuMall\Moneris;
+namespace luniu-mall\Moneris;
 
 use SimpleXMLElement;
 
 /**
- * LuniuMall\Moneris\Gateway
+ * luniu-mall\Moneris\Gateway
  *
  * @property-read array $errors
- * @property-read \LuniuMall\Moneris\Gateway $gateway
+ * @property-read \luniu-mall\Moneris\Gateway $gateway
  * @property-read array $params
  * @property \SimpleXMLElement|null $response
  */
@@ -30,7 +30,7 @@ class Transaction
     /**
      * The Gateway instance.
      *
-     * @var \LuniuMall\Moneris\Gateway
+     * @var \luniu-mall\Moneris\Gateway
      */
     protected $gateway;
 
@@ -49,7 +49,7 @@ class Transaction
     /**
      * Create a new Transaction instance.
      *
-     * @param \LuniuMall\Moneris\Gateway $gateway
+     * @param \luniu-mall\Moneris\Gateway $gateway
      * @param array $params
      */
     public function __construct(Gateway $gateway, array $params = [])
@@ -663,7 +663,7 @@ class Transaction
      *
      * @param \SimpleXMLElement $result
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \luniu-mall\Moneris\Response
      */
     public function validate(SimpleXMLElement $result)
     {
