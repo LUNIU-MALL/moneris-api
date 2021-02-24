@@ -582,6 +582,60 @@ class Transaction
                             'title' => 'not_set'
                         ];
                     }
+                    break;
+                    
+                case 'applepay_token_purchase':
+                    $errors[] = isset($params['order_id']) ? null : [
+                        'field' => 'order_id',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['amount']) ? null : [
+                        'field' => 'amount',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['display_name']) ? null : [
+                        'field' => 'display_name',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['network']) ? null : [
+                        'field' => 'network',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['version']) ? null : [
+                        'field' => 'version',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['data']) ? null : [
+                        'field' => 'data',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['signature']) ? null : [
+                        'field' => 'signature',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['public_key_hash']) ? null : [
+                        'field' => 'public_key_hash',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['ephemeral_public_key']) ? null : [
+                        'field' => 'ephemeral_public_key',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['transaction_id']) ? null : [
+                        'field' => 'transaction_id',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
 
                     break;
                 default:

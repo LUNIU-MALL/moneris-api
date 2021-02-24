@@ -108,6 +108,10 @@ class Moneris
             $gateway->cvdCodes = $this->params['cvdCodes'];
         }
 
+        if (isset($this->params['countryCodes'])) {
+            $gateway->countryCodes = isset($this->params['countryCodes']) ? $this->params['countryCodes'] : 'CA';
+        }
+
         return $gateway;
     }
 }

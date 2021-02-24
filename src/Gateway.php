@@ -188,6 +188,27 @@ class Gateway
         return $this->process($transaction);
     }
 
+        /**
+     * Make an Apple Pay Token purchase.
+     *
+     * @param array $params
+     *
+     * @return \LuniuMall\Moneris\Response
+     */
+    public function applePayTokenPurchase(array $params = [])
+    {
+        $params = array_merge($params, [
+            'type' => 'applepay_token_purchase',
+            'crypt_type' => Crypt::SSL_ENABLED_MERCHANT,
+        ]);
+
+        $transaction = $this->transaction($params);
+
+        return $this->process($transaction);
+    }
+
+
+
     /**
      * Process a transaction through the Moneris API.
      *
