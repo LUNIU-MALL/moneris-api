@@ -2,7 +2,7 @@
 
 ###0.8.1 (2021-02-24)
 
--   change to luniumall personal repo (https://github.com/craigpaul/moneris-api/commit/cce3e4490dfe9732b3c30d30350fdf1e3d05371d)
+-   change to luniumall personal repo (https://github.com/LUNIU-MALL/moneris-api/commit/c89e335b4f431bd7e3d286edaf456f4b87bf53e1)
 
 ###0.8.1 (2020-05-05)
 
