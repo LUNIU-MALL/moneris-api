@@ -1,9 +1,9 @@
 <?php
 
-namespace CraigPaul\Moneris;
+namespace luniumall\Moneris;
 
 /**
- * CraigPaul\Moneris\Customer
+ * luniumall\Moneris\Customer
  *
  * @property array $data
  * @property string $email
@@ -44,7 +44,7 @@ class Customer
      *
      * @param array $params
      *
-     * @return \CraigPaul\Moneris\Customer
+     * @return \luniumall\Moneris\Customer
      */
     public static function create(array $params = [])
     {

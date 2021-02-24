@@ -1,12 +1,12 @@
 <?php
 
-namespace CraigPaul\Moneris;
+namespace luniumall\Moneris;
 
 /**
- * CraigPaul\Moneris\CreditCard
+ * luniumall\Moneris\CreditCard
  *
  * @property-read int $crypt
- * @property \CraigPaul\Moneris\Customer|null $customer
+ * @property \luniumall\Moneris\Customer|null $customer
  * @property string $expiry
  * @property string $number
  */
@@ -20,7 +20,7 @@ class CreditCard
     protected $crypt;
 
     /**
-     * @var \CraigPaul\Moneris\Customer|null
+     * @var \luniumall\Moneris\Customer|null
      */
     protected $customer = null;
 
@@ -53,7 +53,7 @@ class CreditCard
     /**
      * Attach a provided customer to the CreditCard instance.
      *
-     * @param \CraigPaul\Moneris\Customer $customer
+     * @param \luniumall\Moneris\Customer $customer
      *
      * @return $this
      */

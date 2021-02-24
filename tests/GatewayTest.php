@@ -1,10 +1,10 @@
 <?php
 
 use Faker\Factory as Faker;
-use CraigPaul\Moneris\Vault;
-use CraigPaul\Moneris\Gateway;
-use CraigPaul\Moneris\Moneris;
-use CraigPaul\Moneris\Response;
+use luniumall\Moneris\Vault;
+use luniumall\Moneris\Gateway;
+use luniumall\Moneris\Moneris;
+use luniumall\Moneris\Response;
 
 class GatewayTest extends TestCase
 {
@@ -25,7 +25,7 @@ class GatewayTest extends TestCase
     /**
      * The Moneris gateway.
      *
-     * @var \CraigPaul\Moneris\Gateway
+     * @var \luniumall\Moneris\Gateway
      */
     protected $gateway;
 

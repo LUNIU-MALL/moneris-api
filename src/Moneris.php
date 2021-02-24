@@ -1,9 +1,9 @@
 <?php
 
-namespace CraigPaul\Moneris;
+namespace luniumall\Moneris;
 
 /**
- * CraigPaul\Moneris\Moneris
+ * luniumall\Moneris\Moneris
  *
  * @property-read string $id
  * @property-read string $token
@@ -70,7 +70,7 @@ class Moneris
      * @param string $token
      * @param array $params
      *
-     * @return \CraigPaul\Moneris\Gateway
+     * @return \luniumall\Moneris\Gateway
      */
     public static function create($id = '', $token = '', array $params = [])
     {
@@ -82,7 +82,7 @@ class Moneris
     /**
      * Create and return a new Gateway instance.
      *
-     * @return \CraigPaul\Moneris\Gateway
+     * @return \luniumall\Moneris\Gateway
      */
     public function connect()
     {

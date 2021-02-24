@@ -1,6 +1,6 @@
 <?php
 
-namespace CraigPaul\Moneris;
+namespace luniumall\Moneris;
 
 trait Preparable
 {

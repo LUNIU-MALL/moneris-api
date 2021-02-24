@@ -1,5 +1,5 @@
 {
-    "name": "craigpaul/moneris-api",
+    "name": "luniumall/moneris-api",
     "description": "An easier way to consume the (truly awful) Moneris eSELECTplus API.",
     "keywords": ["moneris", "eselectplus", "api"],
     "license": "MIT",
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "CraigPaul\\Moneris\\": "src/"
+            "luniumall\\Moneris\\": "src/"
         }
     },
     "autoload-dev": {
