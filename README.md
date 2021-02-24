@@ -41,7 +41,7 @@ $gateway = (new Moneris($id, $token, $params))->connect();
 ```
 
 ```php
-use CraigPaul\Moneris\Moneris;
+use LuniuMall\Moneris\Moneris;
 
 ...
 
@@ -254,7 +254,7 @@ $vault = $gateway->cards();
 > **Note:** The expiry passed into the credit card is in the format of YYMM as that is how Moneris accepts it.
 
 ```php
-use CraigPaul\Moneris\CreditCard;
+use LuniuMall\Moneris\CreditCard;
 
 ...
 
@@ -296,7 +296,7 @@ In order to sync your customer information with the credit cards stored in the V
 #### Add a Card
 
 ```php
-use CraigPaul\Moneris\Customer;
+use LuniuMall\Moneris\Customer;
 
 ...
 
@@ -317,7 +317,7 @@ $response = $vault->add($card);
 #### Update a Card and Customer
 
 ```php
-use CraigPaul\Moneris\Customer;
+use LuniuMall\Moneris\Customer;
 
 ...
 
@@ -554,12 +554,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 Moneris API is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-[ico-version]: https://img.shields.io/packagist/v/craigpaul/moneris-api.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/craigpaul/moneris-api/master.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/craigpaul/moneris-api.svg?style=flat-square
-[link-packagist]: https://packagist.org/packages/craigpaul/moneris-api
-[link-travis]: https://travis-ci.org/craigpaul/moneris-api
-[link-downloads]: https://packagist.org/packages/craigpaul/moneris-api
-[link-author]: https://github.com/craigpaul
+[link-packagist]: https://packagist.org/packages/luniumall/moneris-api
+[link-downloads]: https://packagist.org/packages/LUNIU-MALL/moneris-api
 [link-contributors]: ../../contributors
