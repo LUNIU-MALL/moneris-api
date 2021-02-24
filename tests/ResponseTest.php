@@ -1,19 +1,19 @@
 <?php
 
 use GuzzleHttp\Client;
-use luniu-mall\Moneris\Crypt;
-use luniu-mall\Moneris\Receipt;
-use luniu-mall\Moneris\Moneris;
-use luniu-mall\Moneris\Response;
-use luniu-mall\Moneris\Processor;
-use luniu-mall\Moneris\Transaction;
+use LuniuMall\Moneris\Crypt;
+use LuniuMall\Moneris\Receipt;
+use LuniuMall\Moneris\Moneris;
+use LuniuMall\Moneris\Response;
+use LuniuMall\Moneris\Processor;
+use LuniuMall\Moneris\Transaction;
 
 class ResponseTest extends TestCase
 {
     /**
      * The Moneris gateway.
      *
-     * @var \luniu-mall\Moneris\Gateway
+     * @var \LuniuMall\Moneris\Gateway
      */
     protected $gateway;
 
@@ -27,21 +27,21 @@ class ResponseTest extends TestCase
     /**
      * The Processor instance.
      *
-     * @var \luniu-mall\Moneris\Processor
+     * @var \LuniuMall\Moneris\Processor
      */
     protected $processor;
 
     /**
      * The Response instance.
      *
-     * @var \luniu-mall\Moneris\Response
+     * @var \LuniuMall\Moneris\Response
      */
     protected $response;
 
     /**
      * The Transaction instance.
      *
-     * @var \luniu-mall\Moneris\Transaction
+     * @var \LuniuMall\Moneris\Transaction
      */
     protected $transaction;
 
@@ -105,7 +105,7 @@ class ResponseTest extends TestCase
     {
         $response = $this->processor->process($this->transaction);
 
-        /** @var \luniu-mall\Moneris\Response $response */
+        /** @var \LuniuMall\Moneris\Response $response */
         $response = $response->validate();
         $receipt = $response->receipt();
 

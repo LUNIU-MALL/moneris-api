@@ -1,6 +1,6 @@
 <?php
 
-use luniu-mall\Moneris\Moneris;
+use LuniuMall\Moneris\Moneris;
 
 class TestCase extends PHPUnit_Framework_TestCase
 {

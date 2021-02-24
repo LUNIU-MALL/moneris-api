@@ -1,12 +1,12 @@
 <?php
 
-namespace luniu-mall\Moneris;
+namespace LuniuMall\Moneris;
 
 /**
- * luniu-mall\Moneris\CreditCard
+ * LuniuMall\Moneris\CreditCard
  *
  * @property-read int $crypt
- * @property \luniu-mall\Moneris\Customer|null $customer
+ * @property \LuniuMall\Moneris\Customer|null $customer
  * @property string $expiry
  * @property string $number
  */
@@ -20,7 +20,7 @@ class CreditCard
     protected $crypt;
 
     /**
-     * @var \luniu-mall\Moneris\Customer|null
+     * @var \LuniuMall\Moneris\Customer|null
      */
     protected $customer = null;
 
@@ -53,7 +53,7 @@ class CreditCard
     /**
      * Attach a provided customer to the CreditCard instance.
      *
-     * @param \luniu-mall\Moneris\Customer $customer
+     * @param \LuniuMall\Moneris\Customer $customer
      *
      * @return $this
      */

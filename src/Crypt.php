@@ -1,6 +1,6 @@
 <?php
 
-namespace luniu-mall\Moneris;
+namespace LuniuMall\Moneris;
 
 class Crypt
 {
