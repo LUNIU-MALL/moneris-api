@@ -100,6 +100,14 @@ class Moneris
             $gateway->cof = boolval($this->params['cof']);
         }
 
+        if (isset($this->params['avsCodes'])) {
+            $gateway->avsCodes = $this->params['avsCodes'];
+        }
+
+        if (isset($this->params['cvdCodes'])) {
+            $gateway->cvdCodes = $this->params['cvdCodes'];
+        }
+
         return $gateway;
     }
 }
