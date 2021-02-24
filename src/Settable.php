@@ -1,6 +1,6 @@
 <?php
 
-namespace luniumall\Moneris;
+namespace LuniuMall\Moneris;
 
 trait Settable
 {
