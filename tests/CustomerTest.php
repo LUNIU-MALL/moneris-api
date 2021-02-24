@@ -1,6 +1,6 @@
 <?php
 
-use LuniuMall\Moneris\Customer;
+use CraigPaul\Moneris\Customer;
 
 class CustomerTest extends TestCase
 {

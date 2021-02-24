@@ -4,7 +4,7 @@
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 [![Total Downloads][ico-downloads]][link-downloads]
-
+ 
 ## Requirements
 
 PHP 5.6 and later
@@ -14,7 +14,7 @@ PHP 5.6 and later
 To get started, install the package via the Composer package manager:
 
 ```php
-composer require LuniuMall/moneris-api
+composer require craigpaul/moneris-api
 ```
 
 ## Instantiation
@@ -22,7 +22,7 @@ composer require LuniuMall/moneris-api
 Creating a new Moneris instance is quite easy and straightforward.
 
 ```php
-use LuniuMall\Moneris\Moneris;
+use CraigPaul\Moneris\Moneris;
 
 ...
 
@@ -30,7 +30,7 @@ $id = 'store1';
 $token = 'yesguy';
 
 // optional
-$params = [
+$params = [  
   'environment' => Moneris::ENV_TESTING, // default: Moneris::ENV_LIVE
   'avs' => true, // default: false
   'cvd' => true, // default: false
@@ -41,7 +41,7 @@ $gateway = (new Moneris($id, $token, $params))->connect();
 ```
 
 ```php
-use LuniuMall\Moneris\Moneris;
+use CraigPaul\Moneris\Moneris;
 
 ...
 
@@ -49,7 +49,7 @@ $id = 'store1';
 $token = 'yesguy';
 
 // optional
-$params = [
+$params = [  
   'environment' => Moneris::ENV_TESTING, // default: Moneris::ENV_LIVE
   'avs' => true, // default: false
   'cvd' => true, // default: false
@@ -200,7 +200,7 @@ $response = $gateway->verify($params);
 
 if ($response->successful && !$response->failedAvs && !$response->failedCvd) {
     $response = $gateway->purchase($params);
-
+    
     if ($response->successful) {
         $receipt = $response->receipt();
     } else {
@@ -226,7 +226,7 @@ if ($response->successful && ($response->failedAvs || $response->failedCvd)) {
 
 ### Credential On File
 
-The credential on file is part of the new Visa requirements to pass the CVD/CVV2 data for transactions.
+The credential on file is part of the new Visa requirements to pass the CVD/CVV2 data for transactions. 
 
 ```php
 $params = [
@@ -251,10 +251,10 @@ $vault = $gateway->cards();
 
 ### Add a Card
 
-> **Note:** The expiry passed into the credit card is in the format of YYMM as that is how Moneris accepts it.
+> **Note:** The expiry passed into the credit card is in the format of YYMM as that is how Moneris accepts it. 
 
 ```php
-use LuniuMall\Moneris\CreditCard;
+use CraigPaul\Moneris\CreditCard;
 
 ...
 
@@ -296,7 +296,7 @@ In order to sync your customer information with the credit cards stored in the V
 #### Add a Card
 
 ```php
-use LuniuMall\Moneris\Customer;
+use CraigPaul\Moneris\Customer;
 
 ...
 
@@ -317,7 +317,7 @@ $response = $vault->add($card);
 #### Update a Card and Customer
 
 ```php
-use LuniuMall\Moneris\Customer;
+use CraigPaul\Moneris\Customer;
 
 ...
 
@@ -384,7 +384,7 @@ $response = $vault->expiring();
 
 ### Transactions
 
-Credit cards stored in the Moneris Vault have a slightly different flow for purchasing and pre-authorization. Any of the other transactions work exactly the same as shown above.
+Credit cards stored in the Moneris Vault have a slightly different flow for purchasing and pre-authorization. Any of the other transactions work exactly the same as shown above. 
 
 #### Vault Purchase
 
@@ -400,7 +400,7 @@ $params = [
     'data_key' => $key,
 ];
 
-$response = $vault->purchase($params); //
+$response = $vault->purchase($params); // 
 ```
 
 > **Note:** The Vault is used for the transaction here instead of the base Gateway object.
@@ -419,7 +419,7 @@ $params = [
     'data_key' => $key,
 ];
 
-$response = $vault->preauth($params); //
+$response = $vault->preauth($params); // 
 ```
 
 ## Responses and Receipts
@@ -439,7 +439,7 @@ $errors = $response->errors;
 Any errors that might occur during your transaction will be returned in the following format for you. It is returned in this format to allow you to handle any translation logic in your own app by utilizing the unique `title` and `field` keys in each error.
 
 ```php
-// The following example would be returned when you forget to set the `order_id` on your transaction.
+// The following example would be returned when you forget to set the `order_id` on your transaction. 
 
 $errors = [
     [
@@ -457,7 +457,7 @@ $status = $response->status;
 ```
 
 The status will return a status code matching the appropriate error returned. See below for an example of the possible statuses returned.
-
+ 
 ```php
 ERROR                    = -23;
 INVALID_TRANSACTION_DATA = 0;
@@ -510,7 +510,7 @@ $receipt = $response->receipt();
 ```
 
 Depending on that type of transaction, you will have different items on your `Receipt` that you have available to read.
-
+ 
 ```php
 $amount = $receipt->read('amount');
 ```
@@ -547,19 +547,20 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
--   [Craig Paul][link-author]
--   [All Contributors][link-contributors]
+- [Craig Paul][link-author]
+- [All Contributors][link-contributors]
 
 ## License
 
 Moneris API is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-[ico-version]: https://img.shields.io/packagist/v/LuniuMall/moneris-api.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/craigpaul/moneris-api.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/LuniuMall/moneris-api/master.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/LuniuMall/moneris-api.svg?style=flat-square
-[link-packagist]: https://packagist.org/packages/LuniuMall/moneris-api
-[link-travis]: https://travis-ci.org/LuniuMall/moneris-api
-[link-downloads]: https://packagist.org/packages/LuniuMall/moneris-api
-[link-author]: https://github.com/LuniuMall
+[ico-travis]: https://img.shields.io/travis/craigpaul/moneris-api/master.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/craigpaul/moneris-api.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/craigpaul/moneris-api
+[link-travis]: https://travis-ci.org/craigpaul/moneris-api
+[link-downloads]: https://packagist.org/packages/craigpaul/moneris-api
+[link-author]: https://github.com/craigpaul
 [link-contributors]: ../../contributors

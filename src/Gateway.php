@@ -1,11 +1,11 @@
 <?php
 
-namespace LuniuMall\Moneris;
+namespace CraigPaul\Moneris;
 
 use GuzzleHttp\Client;
 
 /**
- * LuniuMall\Moneris\Gateway
+ * CraigPaul\Moneris\Gateway
  *
  * @property bool $avs
  * @property-read array $avsCodes
@@ -14,7 +14,7 @@ use GuzzleHttp\Client;
  * @property-read string $environment
  * @property-read string $id
  * @property-read string $token
- * @property \LuniuMall\Moneris\Transaction $transaction
+ * @property \CraigPaul\Moneris\Transaction $transaction
  * @property bool $cof
  */
 class Gateway
@@ -69,7 +69,7 @@ class Gateway
     /**
      * The current transaction.
      *
-     * @var \LuniuMall\Moneris\Transaction
+     * @var \CraigPaul\Moneris\Transaction
      */
     protected $transaction;
 
@@ -99,11 +99,11 @@ class Gateway
     /**
      * Capture a pre-authorized a transaction.
      *
-     * @param \LuniuMall\Moneris\Transaction|string $transaction
+     * @param \CraigPaul\Moneris\Transaction|string $transaction
      * @param string|null $order
      * @param mixed|null $amount
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function capture($transaction, $order = null, $amount = null)
     {
@@ -129,7 +129,7 @@ class Gateway
     /**
      * Create a new Vault instance.
      *
-     * @return \LuniuMall\Moneris\Vault
+     * @return \CraigPaul\Moneris\Vault
      */
     public function cards()
     {
@@ -155,7 +155,7 @@ class Gateway
      *
      * @param array $params
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function preauth(array $params = [])
     {
@@ -174,7 +174,7 @@ class Gateway
      *
      * @param array $params
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function purchase(array $params = [])
     {
@@ -189,32 +189,11 @@ class Gateway
     }
 
     /**
-     * Make an Apple Pay Token purchase.
-     *
-     * @param array $params
-     *
-     * @return \LuniuMall\Moneris\Response
-     */
-    public function applePayTokenPurchase(array $params = [])
-    {
-        $params = array_merge($params, [
-            'type' => 'applepay_token_purchase',
-            'crypt_type' => Crypt::SSL_ENABLED_MERCHANT,
-        ]);
-
-        $transaction = $this->transaction($params);
-
-        return $this->process($transaction);
-    }
-
-
-
-    /**
      * Process a transaction through the Moneris API.
      *
-     * @param \LuniuMall\Moneris\Transaction $transaction
+     * @param \CraigPaul\Moneris\Transaction $transaction
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     protected function process(Transaction $transaction)
     {
@@ -226,11 +205,11 @@ class Gateway
     /**
      * Refund a transaction.
      *
-     * @param \LuniuMall\Moneris\Transaction|string $transaction
+     * @param \CraigPaul\Moneris\Transaction|string $transaction
      * @param string|null $order
      * @param mixed|null $amount
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function refund($transaction, $order = null, $amount = null)
     {
@@ -258,7 +237,7 @@ class Gateway
      *
      * @param array|null $params
      *
-     * @return \LuniuMall\Moneris\Transaction
+     * @return \CraigPaul\Moneris\Transaction
      */
     protected function transaction(array $params = null)
     {
@@ -274,7 +253,7 @@ class Gateway
      *
      * @param array $params
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function verify(array $params = [])
     {
@@ -291,10 +270,10 @@ class Gateway
     /**
      * Void a transaction.
      *
-     * @param \LuniuMall\Moneris\Transaction|string $transaction
+     * @param \CraigPaul\Moneris\Transaction|string $transaction
      * @param string|null $order
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function void($transaction, $order = null)
     {

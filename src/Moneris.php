@@ -1,9 +1,9 @@
 <?php
 
-namespace LuniuMall\Moneris;
+namespace CraigPaul\Moneris;
 
 /**
- * LuniuMall\Moneris\Moneris
+ * CraigPaul\Moneris\Moneris
  *
  * @property-read string $id
  * @property-read string $token
@@ -70,7 +70,7 @@ class Moneris
      * @param string $token
      * @param array $params
      *
-     * @return \LuniuMall\Moneris\Gateway
+     * @return \CraigPaul\Moneris\Gateway
      */
     public static function create($id = '', $token = '', array $params = [])
     {
@@ -82,7 +82,7 @@ class Moneris
     /**
      * Create and return a new Gateway instance.
      *
-     * @return \LuniuMall\Moneris\Gateway
+     * @return \CraigPaul\Moneris\Gateway
      */
     public function connect()
     {
@@ -106,10 +106,6 @@ class Moneris
 
         if (isset($this->params['cvdCodes'])) {
             $gateway->cvdCodes = $this->params['cvdCodes'];
-        }
-
-        if (isset($this->params['countryCodes'])) {
-            $gateway->countryCodes = isset($this->params['countryCodes']) ? $this->params['countryCodes'] : 'CA';
         }
 
         return $gateway;

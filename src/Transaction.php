@@ -1,14 +1,14 @@
 <?php
 
-namespace LuniuMall\Moneris;
+namespace CraigPaul\Moneris;
 
 use SimpleXMLElement;
 
 /**
- * LuniuMall\Moneris\Gateway
+ * CraigPaul\Moneris\Gateway
  *
  * @property-read array $errors
- * @property-read \LuniuMall\Moneris\Gateway $gateway
+ * @property-read \CraigPaul\Moneris\Gateway $gateway
  * @property-read array $params
  * @property \SimpleXMLElement|null $response
  */
@@ -30,7 +30,7 @@ class Transaction
     /**
      * The Gateway instance.
      *
-     * @var \LuniuMall\Moneris\Gateway
+     * @var \CraigPaul\Moneris\Gateway
      */
     protected $gateway;
 
@@ -49,7 +49,7 @@ class Transaction
     /**
      * Create a new Transaction instance.
      *
-     * @param \LuniuMall\Moneris\Gateway $gateway
+     * @param \CraigPaul\Moneris\Gateway $gateway
      * @param array $params
      */
     public function __construct(Gateway $gateway, array $params = [])
@@ -204,7 +204,7 @@ class Transaction
                 'cavv_purchase',
                 'cavv_preauth',
                 'res_purchase_cc',
-                'res_preauth_cc',
+                'res_preauth_cc'
             ]
         );
 
@@ -584,59 +584,6 @@ class Transaction
                     }
 
                     break;
-                case 'applepay_token_purchase':
-                    $errors[] = isset($params['order_id']) ? null : [
-                        'field' => 'order_id',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['amount']) ? null : [
-                        'field' => 'amount',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['display_name']) ? null : [
-                        'field' => 'display_name',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['network']) ? null : [
-                        'field' => 'network',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['version']) ? null : [
-                        'field' => 'version',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['data']) ? null : [
-                        'field' => 'data',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['signature']) ? null : [
-                        'field' => 'signature',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['public_key_hash']) ? null : [
-                        'field' => 'public_key_hash',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['ephemeral_public_key']) ? null : [
-                        'field' => 'ephemeral_public_key',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['transaction_id']) ? null : [
-                        'field' => 'transaction_id',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    break;
                 default:
                     $errors[] = [
                         'field' => 'type',
@@ -663,7 +610,7 @@ class Transaction
      *
      * @param \SimpleXMLElement $result
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function validate(SimpleXMLElement $result)
     {
