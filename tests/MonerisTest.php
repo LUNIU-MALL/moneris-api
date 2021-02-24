@@ -1,7 +1,7 @@
 <?php
 
-use LuniuMall\Moneris\Moneris;
-use LuniuMall\Moneris\Gateway;
+use CraigPaul\Moneris\Moneris;
+use CraigPaul\Moneris\Gateway;
 
 class MonerisTest extends TestCase
 {

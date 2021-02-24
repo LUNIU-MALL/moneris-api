@@ -1,9 +1,9 @@
 <?php
 
-namespace LuniuMall\Moneris;
+namespace CraigPaul\Moneris;
 
 /**
- * LuniuMall\Moneris\Vault
+ * CraigPaul\Moneris\Vault
  *
  * @property-read string $environment
  * @property-read string $id
@@ -30,10 +30,10 @@ class Vault extends Gateway
     /**
      * Add a credit card to the Vault.
      *
-     * @param \LuniuMall\Moneris\CreditCard $card
+     * @param \CraigPaul\Moneris\CreditCard $card
      * @param array $extra_params
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function add(CreditCard $card, $extra_params = [])
     {
@@ -77,7 +77,7 @@ class Vault extends Gateway
      *
      * @param string $key
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function delete($key = '')
     {
@@ -94,7 +94,7 @@ class Vault extends Gateway
     /**
      * Get all expiring credit cards from the Moneris Vault.
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function expiring()
     {
@@ -111,7 +111,7 @@ class Vault extends Gateway
      *
      * @param string $key
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function peek($key = '')
     {
@@ -130,7 +130,7 @@ class Vault extends Gateway
      *
      * @param array $params
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function preauth(array $params = [])
     {
@@ -149,7 +149,7 @@ class Vault extends Gateway
      *
      * @param array $params
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function purchase(array $params = [])
     {
@@ -170,7 +170,7 @@ class Vault extends Gateway
      * @param $transaction
      * @param string|null $order
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function tokenize($transaction, $order = null)
     {
@@ -194,10 +194,10 @@ class Vault extends Gateway
      * Update an existing credit card in the Vault.
      *
      * @param string $key
-     * @param \LuniuMall\Moneris\CreditCard $card
+     * @param \CraigPaul\Moneris\CreditCard $card
      * @param array $extra_params
      *
-     * @return \LuniuMall\Moneris\Response
+     * @return \CraigPaul\Moneris\Response
      */
     public function update($key = '', CreditCard $card, $extra_params = [])
     {

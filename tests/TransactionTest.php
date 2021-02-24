@@ -1,14 +1,14 @@
 <?php
 
-use LuniuMall\Moneris\Moneris;
-use LuniuMall\Moneris\Transaction;
+use CraigPaul\Moneris\Moneris;
+use CraigPaul\Moneris\Transaction;
 
 class TransactionTest extends TestCase
 {
     /**
      * The Moneris gateway.
      *
-     * @var \LuniuMall\Moneris\Gateway
+     * @var \CraigPaul\Moneris\Gateway
      */
     protected $gateway;
 
@@ -22,7 +22,7 @@ class TransactionTest extends TestCase
     /**
      * The Transaction instance.
      *
-     * @var \LuniuMall\Moneris\Transaction
+     * @var \CraigPaul\Moneris\Transaction
      */
     protected $transaction;
 
