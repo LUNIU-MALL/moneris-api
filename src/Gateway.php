@@ -199,7 +199,7 @@ class Gateway
     {
         $params = array_merge($params, [
             'type' => 'applepay_token_purchase',
-            'crypt_type' => Crypt::SSL_ENABLED_MERCHANT,
+            // 'crypt_type' => Crypt::SSL_ENABLED_MERCHANT,
         ]);
 
         $transaction = $this->transaction($params);
