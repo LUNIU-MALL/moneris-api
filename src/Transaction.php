@@ -595,8 +595,8 @@ class Transaction
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
-                    $errors[] = isset($params['display_name']) ? null : [
-                        'field' => 'display_name',
+                    $errors[] = isset($params['displayName']) ? null : [
+                        'field' => 'displayName',
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
@@ -620,24 +620,23 @@ class Transaction
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
-                    $errors[] = isset($params['public_key_hash']) ? null : [
+                    $errors[] = isset($params['header']['public_key_hash']) ? null : [
                         'field' => 'public_key_hash',
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
-                    $errors[] = isset($params['ephemeral_public_key']) ? null : [
+                    $errors[] = isset($params['header']['ephemeral_public_key']) ? null : [
                         'field' => 'ephemeral_public_key',
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
-                    $errors[] = isset($params['transaction_id']) ? null : [
+                    $errors[] = isset($params['header']['transaction_id']) ? null : [
                         'field' => 'transaction_id',
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
-
-
                     break;
+
                 default:
                     $errors[] = [
                         'field' => 'type',
