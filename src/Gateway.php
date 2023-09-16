@@ -207,6 +207,25 @@ class Gateway
         return $this->process($transaction);
     }
 
+    /**
+     * Make a purchase with 3-D Secure.
+     *
+     * @param array $params
+     *
+     * @return \LuniuMall\Moneris\Response
+     */
+    public function cavvPurchase(array $params = [])
+    {
+        $params = array_merge($params, [
+            'type' => 'cavv_purchase',
+            'crypt_type' => Crypt::SSL_ENABLED_MERCHANT,
+        ]);
+
+        $transaction = $this->transaction($params);
+
+        return $this->process($transaction);
+    }
+
 
 
     /**

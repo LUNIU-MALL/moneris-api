@@ -164,6 +164,25 @@ class Vault extends Gateway
     }
 
     /**
+     * Make a purchase with 3-D Secure.
+     *
+     * @param array $params
+     *
+     * @return \LuniuMall\Moneris\Response
+     */
+    public function cavvPurchase(array $params = [])
+    {
+        $params = array_merge($params, [
+            'type' => 'res_cavv_purchase_cc',
+            'crypt_type' => Crypt::SSL_ENABLED_MERCHANT,
+        ]);
+
+        $transaction = $this->transaction($params);
+
+        return $this->process($transaction);
+    }
+
+    /**
      * Tokenize a previous transaction to save the credit
      * card used in the Moneris Vault.
      *
