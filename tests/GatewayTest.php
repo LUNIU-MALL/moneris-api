@@ -312,4 +312,23 @@ class GatewayTest extends TestCase
         $this->assertObjectHasAttribute('token', $vault);
         $this->assertObjectHasAttribute('environment', $vault);
     }
+
+    /** @test */
+    public function it_can_make_a_cavv_purchase_and_receive_a_response()
+    {
+        $params = ['environment' => $this->environment, 'cvd' => true];
+        $gateway = Moneris::create($this->id, $this->token, $params);
+        $params = [
+            'cavv' => '1234',
+            'cvd' => '111',
+            'order_id' => uniqid('1234-56789', true),
+            'amount' => '1.00',
+            'credit_card' => $this->visa,
+            'expdate' => '2012',
+        ];
+        $response = $gateway->cavvPurchase($params);
+
+        $this->assertEquals(Response::class, get_class($response));
+        $this->assertTrue($response->successful);
+    }
 }
