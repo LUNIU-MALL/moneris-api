@@ -547,7 +547,6 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
--   [Craig Paul][link-author]
 -   [All Contributors][link-contributors]
 
 ## License
