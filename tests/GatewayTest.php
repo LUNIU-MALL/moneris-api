@@ -314,12 +314,70 @@ class GatewayTest extends TestCase
     }
 
     /** @test */
+    public function it_can_make_mpi_card_lookup_and_receive_a_response()
+    {
+        $params = ['environment' => $this->environment, 'cvd' => true];
+        $gateway = Moneris::create($this->id, $this->token, $params);
+        $params = [
+            'order_id' => uniqid('1234-56789', true),
+            'credit_card' => $this->visa,
+            // 'data_key' => 'xxxxxx', // Vault
+            'notification_url' => 'https://yournotificationurl.com',
+        ];
+        $response = $gateway->mpiCardLookup($params);
+
+        $this->assertEquals(Response::class, get_class($response));
+        $this->assertTrue($response->successful);
+    }
+
+    /** @test */
+    public function it_can_make_mpi_3ds_authentication_and_receive_a_response()
+    {
+        $params = ['environment' => $this->environment, 'cvd' => true];
+        $gateway = Moneris::create($this->id, $this->token, $params);
+        $params = [
+            'order_id' => uniqid('1234-56789', true),
+            'cardholder_name' => 'CardHolder Name',
+            'credit_card' => $this->visa,
+            // 'data_key' => 'xxxxxx', // Vault
+            'expiry_month' => '12',
+            'expiry_year' => '25',
+            'amount' => '1.00',
+            'notification_url' => 'https://yournotificationurl.com',
+            'browser_useragent' => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36\\",
+            'browser_java_enabled' => "true",
+            'browser_screen_height' => '800',
+            'browser_screen_width' => '1920',
+            'browser_language' => 'en_US'
+        ];
+        $response = $gateway->mpiThreeDSAuthentication($params);
+
+        $this->assertEquals(Response::class, get_class($response));
+        $this->assertTrue($response->successful);
+    }
+
+    /** @test */
+    public function it_can_make_mpi_cavv_lookup_and_receive_a_response()
+    {
+        $params = ['environment' => $this->environment, 'cvd' => true];
+        $gateway = Moneris::create($this->id, $this->token, $params);
+        $params = [
+            'cres' => "eyJhY3NUcmFuc0lEIjoiNzQ0ZDI2NjUtNjU2Yy00ZGNiLTg3MWUtYTBkYmMwODA0OTYzIiwibWVzc2FnZVR5cGUiOiJDUmVzIiwiY2hhbGxlbmdlQ29tcGxldGlvbkluZCI6IlkiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMS4wIiwidHJhbnNTdGF0dXMiOiJZIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJlMTFkNDk4NS04ZDI1LTQwZWQtOTlkNi1jMzgwM2ZlNWU2OGYifQ=="
+        ];
+        $response = $gateway->mpiCavvLookup($params);
+
+        $this->assertEquals(Response::class, get_class($response));
+        $this->assertTrue($response->successful);
+    }
+
+
+    /** @test */
     public function it_can_make_a_cavv_purchase_and_receive_a_response()
     {
         $params = ['environment' => $this->environment, 'cvd' => true];
         $gateway = Moneris::create($this->id, $this->token, $params);
         $params = [
-            'cavv' => '1234',
+            'cavv' => 'AAABBJg0VhI0VniQEjRWAAAAAAA=',
             'cvd' => '111',
             'order_id' => uniqid('1234-56789', true),
             'amount' => '1.00',

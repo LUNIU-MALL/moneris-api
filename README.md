@@ -153,9 +153,39 @@ $response = $gateway->mpiCardLookup($params);
 ```
 
 #### MPI 3DS Authentication
+```php
+$params = [
+    'order_id' => uniqid('1234-56789', true),
+    'cardholder_name' => 'CardHolder Name',
+    'credit_card' => '4242424242424242',
+    // 'data_key' => 'xxxxxx', // Vault
+    'expiry_month' => '12',
+    'expiry_year' => '25',
+    'amount' => '1.00',
+    'notification_url' => 'https://yournotificationurl.com',
+    'browser_useragent' => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36\\",
+    'browser_java_enabled' => "true",
+    'browser_screen_height' => '800',
+    'browser_screen_width' => '1920',
+    'browser_language' => 'en_US',
+    'threeds_completion_ind' => 'Y', //(Y|N|U) indicates whether 3ds method MpiCardLookup was successfully completed
+    'request_type' => '01', // (01=payment|02=recur)
+    'browser_java_enabled' => "true",
+    'challenge_windowsize' => '02' //(01 = 250 x 400, 02 = 390 x 400, 03 = 500 x 600, 04 = 600 x 400, 05 = Full screen)
+];
+
+$response = $gateway->mpiCardLookup($params);
+```
 
 #### CAVV Purchase
 
+```php
+$params = [
+    'cres' => "eyJhY3NUcmFuc0lEIjoiNzQ0ZDI2NjUtNjU2Yy00ZGNiLTg3MWUtYTBkYmMwODA0OTYzIiwibWVzc2FnZVR5cGUiOiJDUmVzIiwiY2hhbGxlbmdlQ29tcGxldGlvbkluZCI6IlkiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMS4wIiwidHJhbnNTdGF0dXMiOiJZIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJlMTFkNDk4NS04ZDI1LTQwZWQtOTlkNi1jMzgwM2ZlNWU2OGYifQ=="
+];
+
+$response = $gateway->mpiCavvLookup($params);
+```
 
 ### Refund
 

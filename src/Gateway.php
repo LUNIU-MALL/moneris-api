@@ -335,8 +335,9 @@ class Gateway
     }
 
     /**
-     * The CardLookup request verifies the applicability of 3DS 2.0 on the card and returns the 3DS Method URL. That is used for device fingerprinting. This request is optional, it may increase the chance of a frictionless flow.
-     *
+     * The CardLookup request verifies the applicability of 3DS 2.0 on the card and returns the 3DS Method URL. 
+     * That is used for device fingerprinting. This request is optional, it may increase the chance of a frictionless flow.
+     * 
      * @param array $params
      *
      * @return \LuniuMall\Moneris\Response
@@ -345,6 +346,69 @@ class Gateway
     {
         $params = array_merge($params, [
             'type' => 'card_lookup'
+        ]);
+
+        $transaction = $this->transaction($params);
+
+        return $this->process($transaction);
+    }
+
+    /**
+     * The authentication request is used to start the validation process of the card. 
+     * The result of this request determines whether 3DS 2.0 is supported by the card and what type of authentication is required.
+     * 
+     * $template = array (
+     *      "order_id" => null,
+     *      "data_key" => null,
+     *      "cardholder_name" => null,
+     *      "pan" => null,
+     *      "expdate" => null,
+     *      "amount" => null,
+     *      "threeds_completion_ind" => null,
+     *      "request_type" => null,
+     *      "notification_url" => null,
+     *      "challenge_windowsize" => null,
+     *      "browser_useragent" => null,
+     *      "browser_java_enabled" => null,
+     *      "browser_screen_height" => null,
+     *      "browser_screen_width" => null,
+     *      "browser_language" => null,
+     *  );
+     * @param array $params
+     *
+     * @return \LuniuMall\Moneris\Response
+     */
+    public function mpiThreeDSAuthentication(array $params = [])
+    {
+        $default = [
+            'threeds_completion_ind' => 'Y', //(Y|N|U) indicates whether 3ds method MpiCardLookup was successfully completed
+            'request_type' => '01', // (01=payment|02=recur)
+            'browser_java_enabled' => "true",
+            'challenge_windowsize' => '02' //(01 = 250 x 400, 02 = 390 x 400, 03 = 500 x 600, 04 = 600 x 400, 05 = Full screen)
+        ];
+        $params = array_merge($default, $params);
+        $params = array_merge($params, [
+            'type' => 'threeds_authentication',
+        ]);
+
+        $transaction = $this->transaction($params);
+
+        return $this->process($transaction);
+    }
+
+    /**
+     * (Challenge Flow Only)
+     * If you get a TransStatus = “C” in your threeDSAuthentication Response, then a form must be built and POSTed to the URL provided.
+     * The “action” is retrieved from the ChallengeURL and the “creq” field is retrieved from the ChallengeData.
+     * 
+     * @param array $params
+     *
+     * @return \LuniuMall\Moneris\Response
+     */
+    public function mpiCavvLookup(array $params = [])
+    {
+        $params = array_merge($params, [
+            'type' => 'cavv_lookup'
         ]);
 
         $transaction = $this->transaction($params);

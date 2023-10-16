@@ -800,6 +800,94 @@ class Transaction
                     ];
 
                     break;
+                case 'threeds_authentication':
+                    $errors[] = isset($params['order_id']) ? null : [
+                        'field' => 'order_id',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    $errors[] = isset($params['cardholder_name']) ? null : [
+                        'field' => 'cardholder_name',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    $errors[] = isset($params['pan']) || isset($params['data_key']) ? null : [
+                        'field' => 'credit_card',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    $errors[] = isset($params['expdate']) ? null : [
+                        'field' => 'expdate',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    $errors[] = isset($params['amount']) ? null : [
+                        'field' => 'amount',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    $errors[] = isset($params['threeds_completion_ind']) ? null : [
+                        'field' => 'threeds_completion_ind',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    $errors[] = isset($params['request_type']) ? null : [
+                        'field' => 'request_type',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    $errors[] = isset($params['notification_url']) ? null : [
+                        'field' => 'notification_url',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    $errors[] = isset($params['challenge_windowsize']) ? null : [
+                        'field' => 'challenge_windowsize',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['browser_useragent']) ? null : [
+                        'field' => 'browser_useragent',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['browser_java_enabled']) ? null : [
+                        'field' => 'browser_java_enabled',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['browser_screen_height']) ? null : [
+                        'field' => 'browser_screen_height',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['browser_screen_width']) ? null : [
+                        'field' => 'browser_screen_width',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    $errors[] = isset($params['browser_language']) ? null : [
+                        'field' => 'browser_language',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    break;
+                case 'cavv_lookup':
+                    $errors[] = isset($params['cres']) ? null : [
+                        'field' => 'cres',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+                    break;
                 default:
                     $errors[] = [
                         'field' => 'type',
