@@ -333,4 +333,22 @@ class Gateway
 
         return $this->process($transaction);
     }
+
+    /**
+     * The CardLookup request verifies the applicability of 3DS 2.0 on the card and returns the 3DS Method URL. That is used for device fingerprinting. This request is optional, it may increase the chance of a frictionless flow.
+     *
+     * @param array $params
+     *
+     * @return \LuniuMall\Moneris\Response
+     */
+    public function mpiCardLookup(array $params = [])
+    {
+        $params = array_merge($params, [
+            'type' => 'card_lookup'
+        ]);
+
+        $transaction = $this->transaction($params);
+
+        return $this->process($transaction);
+    }
 }

@@ -540,7 +540,7 @@ class Transaction
                     break;
                 case 'res_add_cc':
                     $errors[] = isset($params['pan']) ? null : [
-                        'field' => 'pan',
+                        'field' => 'credit_card',
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
@@ -568,7 +568,7 @@ class Transaction
                     ];
 
                     $errors[] = isset($params['pan']) ? null : [
-                        'field' => 'pan',
+                        'field' => 'credit_card',
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
@@ -780,7 +780,26 @@ class Transaction
                         'title' => 'not_set'
                     ];
                     break;
+                case 'card_lookup':
+                    $errors[] = isset($params['order_id']) ? null : [
+                        'field' => 'order_id',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
 
+                    $errors[] = isset($params['pan']) || isset($params['data_key']) ? null : [
+                        'field' => 'credit_card',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    $errors[] = isset($params['notification_url']) ? null : [
+                        'field' => 'notification_url',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    break;
                 default:
                     $errors[] = [
                         'field' => 'type',

@@ -61,6 +61,20 @@ $gateway = Moneris::create($id, $token, $params);
 
 > **Note:** Please note that the Moneris store id and API token are always required to be passed to the Moneris constructor or static create method.
 
+## Run Unit Test
+
+Run all test cases
+
+```
+./vendor/bin/phpunit
+```
+
+Run a specific test case
+
+```
+./vendor/bin/phpunit --filter it_can_make_a_cavv_purchase_and_receive_a_response
+```
+
 ## Transactions
 
 To make a purchase, preauth a card, void a transaction, etc. is very straightforward once you have your Gateway instantiated ([see above](#instantiation)).
@@ -124,6 +138,24 @@ $response = $gateway->purchase($params);
 
 $response = $gateway->void($response->transaction);
 ```
+
+### 3D-Secure 2.0
+#### Card Lookup
+```php
+$params = [
+    'order_id' => uniqid('1234-56789', true),
+    'credit_card' => '4242424242424242',
+    // 'data_key' => 'abcdefghkdml', // vault key
+    'notification_url' => 'https://yournotificationurl.com',
+];
+
+$response = $gateway->mpiCardLookup($params);
+```
+
+#### MPI 3DS Authentication
+
+#### CAVV Purchase
+
 
 ### Refund
 
