@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 
 class Processor
 {
+    private $mpi2_url = '/mpi2/servlet/MpiServlet';
     /**
      * @var \GuzzleHttp\Client
      */
@@ -18,7 +19,7 @@ class Processor
      */
     protected $config = [
         'protocol' => 'https',
-        'host' => 'esqa.moneris.com',
+        'host' => 'mpg1t.moneris.io',
         'port' => '443',
         'url' => '/gateway2/servlet/MpgRequest',
         'api_version' => 'PHP - 2.5.6',
@@ -49,10 +50,14 @@ class Processor
      *
      * @return array
      */
-    public function config($environment = '')
+    public function config($gateway)
     {
-        if ($environment === Moneris::ENV_LIVE) {
+        if ($gateway->environment === Moneris::ENV_LIVE) {
             $this->config['host'] = 'www3.moneris.com';
+        }
+
+        if($gateway->isMPI2){
+            $this->config['url'] = $this->mpi2_url;
         }
 
         return $this->config;
@@ -123,13 +128,21 @@ class Processor
      */
     protected function submit(Transaction $transaction)
     {
-        $config = $this->config($transaction->gateway->environment);
+        $config = $this->config($transaction->gateway);
 
         $url = $config['protocol'].'://'.$config['host'].':'.$config['port'].$config['url'];
 
         $xml = str_replace(' </', '</', $transaction->toXml());
 
         $response = $this->send($config, $url, $xml);
+
+        $myfile = __DIR__ . '/shop_log.txt';
+        $txt = "\n------url-------\n". print_r($url,true)."\n ------------------------------ \n";
+        file_put_contents($myfile,$txt,FILE_APPEND);
+
+        $myfile = __DIR__ . '/shop_log.txt';
+        $txt = "\n------xml-------\n". print_r($xml,true)."\n ------------------------------ \n";
+        file_put_contents($myfile,$txt,FILE_APPEND);
 
         if (!$response) {
             return $this->error();

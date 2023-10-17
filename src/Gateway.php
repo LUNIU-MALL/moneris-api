@@ -81,6 +81,13 @@ class Gateway
     protected $cof = false;
 
     /**
+     * Determine if it is MPI2 - using MPI2 url (different url and request header).
+     *
+     * @var bool
+     */
+    protected $isMPI2 = false;
+
+    /**
      * Create a new Moneris instance.
      *
      * @param string $id
@@ -344,6 +351,7 @@ class Gateway
      */
     public function mpiCardLookup(array $params = [])
     {
+        $this->isMPI2 = true;
         $params = array_merge($params, [
             'type' => 'card_lookup'
         ]);
@@ -380,6 +388,7 @@ class Gateway
      */
     public function mpiThreeDSAuthentication(array $params = [])
     {
+        $this->isMPI2 = true;
         $default = [
             'threeds_completion_ind' => 'Y', //(Y|N|U) indicates whether 3ds method MpiCardLookup was successfully completed
             'request_type' => '01', // (01=payment|02=recur)
@@ -407,6 +416,7 @@ class Gateway
      */
     public function mpiCavvLookup(array $params = [])
     {
+        $this->isMPI2 = true;
         $params = array_merge($params, [
             'type' => 'cavv_lookup'
         ]);

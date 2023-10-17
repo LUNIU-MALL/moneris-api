@@ -178,6 +178,16 @@ class Transaction
         return $params;
     }
 
+    protected function getType($type){
+        $type = 'request';
+        if(in_array($type, ['txn', 'acs'])){
+            $type = 'MpiRequest';
+        }else if($this->gateway->isMPI2){
+            $type = 'Mpi2Request';
+        }
+        return $type;
+    }
+
     /**
      * Convert the transaction parameters into an XML structure.
      *
@@ -188,7 +198,7 @@ class Transaction
         $gateway = $this->gateway;
         $params = $this->params;
 
-        $type = in_array($params['type'], ['txn', 'acs']) ? 'MpiRequest' : 'request';
+        $type = $this->getType($this->params['type']);
 
         $xml = new SimpleXMLElement("<$type/>");
         $xml->addChild('store_id', $gateway->id);
