@@ -204,7 +204,7 @@ $params = [
 $response = $gateway->mpiCardLookup($params);
 ```
 
-#### CAVV Purchase
+#### CAVV Lookup
 
 ```php
 $params = [
@@ -212,6 +212,20 @@ $params = [
 ];
 
 $response = $gateway->mpiCavvLookup($params);
+```
+
+#### CAVV Purchase
+
+```php
+$params = [
+   'cavv' => 'AAABBJg0VhI0VniQEjRWAAAAAAA=',
+   'cvd' => '111',
+   'order_id' => uniqid('1234-56789', true),
+   'amount' => '1.00',
+   'credit_card' => '4242424242424242',
+   'expdate' => '2012',
+];
+$response = $gateway->cavvPurchase($params);
 ```
 
 ### Refund
