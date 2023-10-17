@@ -136,14 +136,6 @@ class Processor
 
         $response = $this->send($config, $url, $xml);
 
-        $myfile = __DIR__ . '/shop_log.txt';
-        $txt = "\n------url-------\n". print_r($url,true)."\n ------------------------------ \n";
-        file_put_contents($myfile,$txt,FILE_APPEND);
-
-        $myfile = __DIR__ . '/shop_log.txt';
-        $txt = "\n------xml-------\n". print_r($xml,true)."\n ------------------------------ \n";
-        file_put_contents($myfile,$txt,FILE_APPEND);
-
         if (!$response) {
             return $this->error();
         }

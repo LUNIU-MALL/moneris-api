@@ -172,9 +172,10 @@ class Vault extends Gateway
      */
     public function cavvPurchase(array $params = [])
     {
+        $default = ['crypt_type' => Crypt::AUTHENTICATED_E_COMMERCE];
+        $params = array_merge($default, $params);
         $params = array_merge($params, [
             'type' => 'res_cavv_purchase_cc',
-            'crypt_type' => Crypt::SSL_ENABLED_MERCHANT,
         ]);
 
         $transaction = $this->transaction($params);

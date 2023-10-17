@@ -16,22 +16,12 @@ class Response
 {
     use Gettable, Settable;
 
-    const ERROR                    = -23;
+    const ERROR                    = -500;
     const INVALID_TRANSACTION_DATA = 0;
 
     const FAILED_ATTEMPT            = -1;
     const CREATE_TRANSACTION_RECORD = -2;
     const GLOBAL_ERROR_RECEIPT      = -3;
-
-    const SYSTEM_UNAVAILABLE    = -14;
-    const CARD_EXPIRED          = -15;
-    const INVALID_CARD          = -16;
-    const INSUFFICIENT_FUNDS    = -17;
-    const PREAUTH_FULL          = -18;
-    const DUPLICATE_TRANSACTION = -19;
-    const DECLINED              = -20;
-    const NOT_AUTHORIZED        = -21;
-    const INVALID_EXPIRY_DATE   = -22;
 
     const CVD               = -4;
     const CVD_NO_MATCH      = -5;
@@ -45,7 +35,19 @@ class Response
     const AVS_NO_MATCH    = -12;
     const AVS_TIMEOUT     = -13;
 
-    const POST_FRAUD = -22;
+    const SYSTEM_UNAVAILABLE    = -14;
+    const CARD_EXPIRED          = -15;
+    const INVALID_CARD          = -16;
+    const INSUFFICIENT_FUNDS    = -17;
+    const PREAUTH_FULL          = -18;
+    const DUPLICATE_TRANSACTION = -19;
+    const DECLINED              = -20;
+    const NOT_AUTHORIZED        = -21;
+    const INVALID_EXPIRY_DATE   = -22;
+
+    const POST_FRAUD = -23;
+
+    const MPI_AUTH_FAIL = -24;
 
     /**
      * Any errors that arise from processing a transaction.
@@ -117,7 +119,7 @@ class Response
     public function receipt()
     {
         if (!is_null($response = $this->transaction->response)) {
-            return new Receipt($response->receipt);
+            return new Receipt($this->transaction->gateway, $response->receipt);
         }
 
         return null;

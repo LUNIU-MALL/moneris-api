@@ -9,6 +9,11 @@ class Receipt
     /**
      * @var array
      */
+    protected $gateway;
+
+    /**
+     * @var array
+     */
     protected $data;
 
     /**
@@ -16,8 +21,10 @@ class Receipt
      *
      * @param $data
      */
-    public function __construct($data)
+    public function __construct($gateway, $data)
     {
+        $this->gateway = $gateway;
+
         $this->data = $this->prepare($data, [
             ['property' => 'amount', 'key' => 'TransAmount', 'cast' => 'string'],
             ['property' => 'authorization', 'key' => 'AuthCode', 'cast' => 'string'],
@@ -37,16 +44,38 @@ class Receipt
             ['property' => 'transaction', 'key' => 'TransID', 'cast' => 'string'],
             ['property' => 'type', 'key' => 'TransType', 'cast' => 'string'],
             ['property' => 'issuer_id', 'key' => 'IssuerId', 'cast' => 'string'],
+
+            // MPI response fields
+            ['property' => 'message_type', 'key' => 'MessageType', 'cast' => 'string'],
+            ['property' => '3ds_url', 'key' => 'ThreeDSMethodURL', 'cast' => 'string'],
+            ['property' => '3ds_data', 'key' => 'ThreeDSMethodData', 'cast' => 'string'],
+            ['property' => 'challenge_url', 'key' => 'ChallengeURL', 'cast' => 'string'],
+            ['property' => 'challenge_data', 'key' => 'ChallengeData', 'cast' => 'string'],
+            ['property' => 'trans_status', 'key' => 'TransStatus', 'cast' => 'string'], // [Y, N, A, U, R, C]
+            ['property' => '3ds_trans_id', 'key' => 'ThreeDSServerTransId', 'cast' => 'string'],
+            ['property' => 'ds_trans_id', 'key' => 'DSTransId', 'cast' => 'string'],
+            ['property' => 'eci', 'key' => 'ECI', 'cast' => 'string'],
+            ['property' => 'cavv', 'key' => 'Cavv', 'cast' => 'string'],
+            ['property' => 'status_reason', 'key' => 'TransStatusReason', 'cast' => 'string'],
+            ['property' => 'cardholder', 'key' => 'CardholderInfo', 'cast' => 'array'],
         ]);
     }
 
     public function successful()
     {
-        $complete = $this->read('complete');
+        $complete = $this->gateway->isMPI2 ? $this->read('message') === 'SUCCESS' : $this->read('complete');
         $valid_code = $this->read('code') !== 'null';
         $code = (int)$this->read('code');
 
-        return $complete && $valid_code && $code >= 0 && $code < 50;
+        $condition = $complete && $valid_code && $code >= 0 && $code < 50;
+
+        // more condition for MPI - only for mpiThreeDSAuthentication (3DS)
+        if($this->gateway->isMPI2){
+            $condition = $condition && 
+            (empty($this->read('trans_status')) || in_array($this->read('trans_status'), $this->gateway->transStatusCode));
+        }
+        
+        return $condition;
     }
 
     /**

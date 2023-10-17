@@ -88,6 +88,13 @@ class Gateway
     protected $isMPI2 = false;
 
     /**
+     * 3-D Secure 2.0 TransStatus Codes
+     * [Y, A, C, U, N, R]
+     * @var array
+     */
+    protected $transStatusCode = ['Y', 'A', 'C'];
+
+    /**
      * Create a new Moneris instance.
      *
      * @param string $id
@@ -216,16 +223,19 @@ class Gateway
 
     /**
      * Make a purchase with 3-D Secure.
-     *
+     * Once 3DS authentication is completed and the crypt_type(ECI) = 5 then the transaction will proceed using the cavv_purchase or cavv_preath. 
+     * If the crypt type = 6 or 7 then the transaction will proceed using purchase or preauth.
+     * 
      * @param array $params
      *
      * @return \LuniuMall\Moneris\Response
      */
     public function cavvPurchase(array $params = [])
     {
+        $default = ['crypt_type' => Crypt::AUTHENTICATED_E_COMMERCE];
+        $params = array_merge($default, $params);
         $params = array_merge($params, [
             'type' => 'cavv_purchase',
-            'crypt_type' => Crypt::SSL_ENABLED_MERCHANT,
         ]);
 
         $transaction = $this->transaction($params);

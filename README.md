@@ -140,6 +140,33 @@ $response = $gateway->void($response->transaction);
 ```
 
 ### 3D-Secure 2.0
+
+#### Steps
+1. Make `Card Lookup` request, get ThreeDSMethodURL and ThreeDSMethodData
+2. The threeDSMethodData must be sent via HTTP POST to the threeDSMethodURL in a hidden iFrame. Get JS script can be used in iframe.
+   ```
+    POST https://acs-server.ps.msignia.com/api/v1/3ds_method HTTP/1.1
+    Content-Type: application/x-www-form-urlencoded
+    threeDSMethodData=eyJ0aHJlZURTU2VydmVyVHJhbnNJRCI6IjNhYzdjYWE3LWFhNDItMjY2My03OTFiLTJhYzA1YTU0MmM0YSJ9
+   ```
+3. Handling The Challenge Flow - If get a TransStatus = “C” in your threeDSAuthentication Response, then a form must be built and POSTed to the URL provided. The “action” is retrieved from the ChallengeURL and the “creq” field is retrieved from the ChallengeData.
+    ```
+        <form method="POST" action="https://3dsurl.example.com/do3DS">
+            <input name="creq" value="thisissamplechallengedata1234567890">
+        </form>
+    ```
+4. Process Cavv Purchase
+
+#### TransStatus Codes
+| VALUE 	|       DESCRIPTION      	| COMMENTS                                                                                                            	|
+|:-----:	|:----------------------:	|---------------------------------------------------------------------------------------------------------------------	|
+|   Y   	|      Authenticated     	| Cardholder has been fully authenticated                                                                             	|
+|   A   	| Authentication Attempt 	| A proof of authentication attempt was generated                                                                     	|
+|   C   	|   Challenge Required   	| Cardholder requires a challenge to complete authentication                                                          	|
+|   U   	|    Not Authenticated   	| Authentication could not be performed due to technical or other issue                                               	|
+|   N   	|    Not Authenticated   	| Not authenticated                                                                                                   	|
+|   R   	|    Not Authenticated   	| Not authenticated because the Issuer is rejecting authentication and requesting that authoriZation not be attempted 	|
+
 #### Card Lookup
 ```php
 $params = [
