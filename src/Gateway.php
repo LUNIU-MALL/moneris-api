@@ -90,6 +90,10 @@ class Gateway
     /**
      * 3-D Secure 2.0 TransStatus Codes
      * [Y, A, C, U, N, R]
+     * A TransStatus = “Y” or “A” means the website can proceed immediately to the financial transaction with the CAVV value provided. This is a frictionless transaction flow without presenting a challenge.
+     * A TransStatus = “C” indicates that the cardholder must be presented a challenge. To present the challenge, you must POST a <form> with a “creq” field, which contains the ChallengeData, to the URL defined in the ChallengeURL field.
+     * A TransStatus = “D” indicates that the cardholder must be presented a challenge via Decoupled Authentication. See Decoupled Authentication.
+
      * @var array
      */
     protected $transStatusCode = ['Y', 'A', 'C'];

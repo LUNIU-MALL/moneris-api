@@ -223,7 +223,8 @@ $params = [
    'order_id' => uniqid('1234-56789', true),
    'amount' => '1.00',
    'credit_card' => '4242424242424242',
-   'expdate' => '2012',
+   'expiry_month' => '12', // or using 'expdate' => '2012',
+   'expiry_year' => '20'
 ];
 $response = $gateway->cavvPurchase($params);
 ```
