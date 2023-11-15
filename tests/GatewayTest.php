@@ -359,7 +359,7 @@ class GatewayTest extends TestCase
     /** @test */
     public function it_can_make_mpi_cavv_lookup_and_receive_a_response()
     {
-        $params = ['environment' => $this->environment, 'cvd' => true];
+        $params = ['environment' => $this->environment];
         $gateway = Moneris::create($this->id, $this->token, $params);
         $params = [
             'cres' => "eyJhY3NUcmFuc0lEIjoiNzQ0ZDI2NjUtNjU2Yy00ZGNiLTg3MWUtYTBkYmMwODA0OTYzIiwibWVzc2FnZVR5cGUiOiJDUmVzIiwiY2hhbGxlbmdlQ29tcGxldGlvbkluZCI6IlkiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMS4wIiwidHJhbnNTdGF0dXMiOiJZIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJlMTFkNDk4NS04ZDI1LTQwZWQtOTlkNi1jMzgwM2ZlNWU2OGYifQ=="
@@ -374,10 +374,10 @@ class GatewayTest extends TestCase
     /** @test */
     public function it_can_make_a_cavv_purchase_and_receive_a_response()
     {
-        $params = ['environment' => $this->environment, 'cvd' => true];
+        $params = ['environment' => $this->environment, 'cvd' => true, 'cavv' => true];
         $gateway = Moneris::create($this->id, $this->token, $params);
         $params = [
-            'cavv' => 'AAABBJg0VhI0VniQEjRWAAAAAAA=',
+            'cavv' => 'kBABApFSYyd4l2eQQFJjAAAAAAA=',
             'cvd' => '111',
             'order_id' => uniqid('1234-56789', true),
             'amount' => '1.00',
