@@ -35,6 +35,7 @@ $params = [
   'avs' => true, // default: false
   'cvd' => true, // default: false
   'cof' => true, // default: false
+  'cavv' => false, // default: false
 ];
 
 $gateway = (new Moneris($id, $token, $params))->connect();
@@ -54,6 +55,7 @@ $params = [
   'avs' => true, // default: false
   'cvd' => true, // default: false
   'cof' => true, // default: false
+  'cavv' => false, // default: false
 ];
 
 $gateway = Moneris::create($id, $token, $params);

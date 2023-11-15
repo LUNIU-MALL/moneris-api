@@ -44,6 +44,10 @@ class Receipt
             ['property' => 'transaction', 'key' => 'TransID', 'cast' => 'string'],
             ['property' => 'type', 'key' => 'TransType', 'cast' => 'string'],
             ['property' => 'issuer_id', 'key' => 'IssuerId', 'cast' => 'string'],
+            ['property' => 'timeout', 'key' => 'TimedOut', 'cast' => 'boolean'],
+            ['property' => 'corporate_card', 'key' => 'CorporateCard', 'cast' => 'boolean'],
+            ['property' => 'payment_type', 'key' => 'PaymentType', 'cast' => 'string'],
+            ['property' => 'visa_debit', 'key' => 'IsVisaDebit', 'cast' => 'boolean'],
 
             // MPI response fields
             ['property' => 'message_type', 'key' => 'MessageType', 'cast' => 'string'],
@@ -51,6 +55,7 @@ class Receipt
             ['property' => '3ds_data', 'key' => 'ThreeDSMethodData', 'cast' => 'string'],
             ['property' => 'challenge_url', 'key' => 'ChallengeURL', 'cast' => 'string'],
             ['property' => 'challenge_data', 'key' => 'ChallengeData', 'cast' => 'string'],
+            ['property' => 'challenge_completion_indicator', 'key' => 'ChallengeCompletionIndicator', 'cast' => 'string'],
             ['property' => 'trans_status', 'key' => 'TransStatus', 'cast' => 'string'], // [Y, N, A, U, R, C]
             ['property' => '3ds_trans_id', 'key' => 'ThreeDSServerTransId', 'cast' => 'string'],
             ['property' => 'ds_trans_id', 'key' => 'DSTransId', 'cast' => 'string'],
@@ -58,6 +63,7 @@ class Receipt
             ['property' => 'cavv', 'key' => 'Cavv', 'cast' => 'string'],
             ['property' => 'status_reason', 'key' => 'TransStatusReason', 'cast' => 'string'],
             ['property' => 'cardholder', 'key' => 'CardholderInfo', 'cast' => 'array'],
+            ['property' => 'cavv_result', 'key' => 'CavvResultCode', 'cast' => 'string'],
         ]);
     }
 

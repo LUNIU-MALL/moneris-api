@@ -100,12 +100,20 @@ class Moneris
             $gateway->cof = boolval($this->params['cof']);
         }
 
+        if (isset($this->params['cavv'])) {
+            $gateway->cavv = boolval($this->params['cavv']);
+        }
+
         if (isset($this->params['avsCodes'])) {
             $gateway->avsCodes = $this->params['avsCodes'];
         }
 
         if (isset($this->params['cvdCodes'])) {
             $gateway->cvdCodes = $this->params['cvdCodes'];
+        }
+
+        if (isset($this->params['cavvCodes'])) {
+            $gateway->cavvCodes = $this->params['cavvCodes'];
         }
 
         if (isset($this->params['countryCodes'])) {

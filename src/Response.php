@@ -49,6 +49,9 @@ class Response
 
     const MPI_AUTH_FAIL = -24;
 
+    const CAVV             = -25;
+
+
     /**
      * Any errors that arise from processing a transaction.
      *
@@ -69,6 +72,13 @@ class Response
      * @var bool
      */
     protected $failedCvd = false;
+
+    /**
+     * Determine if we have failed Cavv verification for 3DS.
+     *
+     * @var bool
+     */
+    protected $failedCavv = false;
 
     /**
      * The status code.
@@ -188,6 +198,15 @@ class Response
 
             return $this;
         }
+
+        $code = !is_null($receipt->read('cavv_result')) ? $receipt->read('cavv_result') : null;
+        if ($gateway->cavv && !is_null($code) && $code !== 'null' && !in_array($code[1], $gateway->cavvCodes)) {
+            $this->status = self::CAVV;
+            $this->failedCavv = true;
+
+            return $this;
+        }
+
 
         return $this;
     }

@@ -46,6 +46,18 @@ class Gateway
     protected $cvdCodes = ['M', 'Y', 'P', 'S', 'U'];
 
     /**
+     * Determine if we will use the Cavv response code verification.
+     *
+     * @var bool
+     */
+    protected $cavv = false;
+
+    /**
+     * @var array
+     */
+    protected $cavvCodes = ['1', '2', '3', '8', 'A', '4', '7', '9', '6', 'C', 'D'];
+
+    /**
      * The environment used for connecting to the Moneris API.
      *
      * @var string
@@ -163,6 +175,10 @@ class Gateway
 
         if (isset($this->cof)) {
             $vault->cof = boolval($this->cof);
+        }
+
+        if (isset($this->cavv)) {
+            $vault->cavv = boolval($this->cavv);
         }
 
         return $vault;
