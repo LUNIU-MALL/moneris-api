@@ -200,7 +200,7 @@ class Response
         }
 
         $code = !is_null($receipt->read('cavv_result')) ? $receipt->read('cavv_result') : null;
-        if ($gateway->cavv && !is_null($code) && $code !== 'null' && !in_array($code[1], $gateway->cavvCodes)) {
+        if ($gateway->cavv && !is_null($code) && $code !== 'null' && !in_array($code, $gateway->cavvCodes)) {
             $this->status = self::CAVV;
             $this->failedCavv = true;
 

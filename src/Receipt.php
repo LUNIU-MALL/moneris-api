@@ -57,6 +57,7 @@ class Receipt
             ['property' => 'challenge_data', 'key' => 'ChallengeData', 'cast' => 'string'],
             ['property' => 'challenge_completion_indicator', 'key' => 'ChallengeCompletionIndicator', 'cast' => 'string'],
             ['property' => 'trans_status', 'key' => 'TransStatus', 'cast' => 'string'], // [Y, N, A, U, R, C]
+            ['property' => '3ds_ace_trans_id', 'key' => 'ThreeDSAcsTransID', 'cast' => 'string'],
             ['property' => '3ds_trans_id', 'key' => 'ThreeDSServerTransId', 'cast' => 'string'],
             ['property' => 'ds_trans_id', 'key' => 'DSTransId', 'cast' => 'string'],
             ['property' => 'eci', 'key' => 'ECI', 'cast' => 'string'],
