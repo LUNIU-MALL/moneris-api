@@ -252,7 +252,7 @@ class Gateway
      */
     public function cavvPurchase(array $params = [])
     {
-        $default = ['crypt_type' => Crypt::AUTHENTICATED_E_COMMERCE];
+        $default = ['crypt_type' => Crypt::AUTHENTICATED_E_COMMERCE, 'threeds_version' => '2.2.0'];
         $params = array_merge($default, $params);
         $params = array_merge($params, [
             'type' => 'cavv_purchase',

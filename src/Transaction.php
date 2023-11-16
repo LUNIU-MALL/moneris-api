@@ -450,6 +450,12 @@ class Transaction
                         'title' => 'not_set'
                     ];
 
+                    $errors[] = isset($params['threeds_server_trans_id']) ? null : [
+                        'field' => 'threeds_server_trans_id',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
                     if ($this->gateway->avs) {
                         $errors[] = isset($params['avs_street_number']) ? null : [
                             'field' => 'avs_street_number',
@@ -692,6 +698,12 @@ class Transaction
 
                     $errors[] = isset($params['cavv']) ? null : [
                         'field' => 'cavv',
+                        'code' => self::PARAMETER_NOT_SET,
+                        'title' => 'not_set'
+                    ];
+
+                    $errors[] = isset($params['threeds_server_trans_id']) ? null : [
+                        'field' => 'threeds_server_trans_id',
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
