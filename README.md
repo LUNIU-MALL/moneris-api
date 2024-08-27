@@ -642,7 +642,15 @@ time - The time of the transaction. (string)
 transaction - The Moneris id of the transaction. (string)
 type - The transaction type. (string)
 ```
-
+## Run Unit Test
+Run all test
+```
+./vendor/bin/phpunit --verbose tests
+```
+Run a test
+```
+./vendor/bin/phpunit --filter it_can_get_cavv_purchase_status
+```
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

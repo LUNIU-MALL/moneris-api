@@ -48,6 +48,8 @@ class Receipt
             ['property' => 'corporate_card', 'key' => 'CorporateCard', 'cast' => 'boolean'],
             ['property' => 'payment_type', 'key' => 'PaymentType', 'cast' => 'string'],
             ['property' => 'visa_debit', 'key' => 'IsVisaDebit', 'cast' => 'boolean'],
+            ['property' => 'status_code', 'key' => 'statusCode', 'cast' => 'string'],
+            ['property' => 'status_message', 'key' => 'statusMessage', 'cast' => 'string'],
 
             // MPI response fields
             ['property' => 'message_type', 'key' => 'MessageType', 'cast' => 'string'],

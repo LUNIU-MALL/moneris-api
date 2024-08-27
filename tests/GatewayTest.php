@@ -107,6 +107,23 @@ class GatewayTest extends TestCase
     }
 
     /** @test */
+    public function it_can_make_a_purchase_status_check()
+    {
+        $params = [
+            'order_id' => uniqid('1234-56789', true),
+            'amount' => '1.00',
+            'credit_card' => $this->visa,
+            'expdate' => '2012',
+            'status'
+        ];
+
+        $response = $this->gateway->purchase($params);
+
+        $this->assertEquals(Response::class, get_class($response));
+        $this->assertTrue($response->successful);
+    }
+
+    /** @test */
     public function it_can_make_a_purchase_with_provided_customer_information_and_receive_a_response()
     {
         $params = array_merge($this->params, [
@@ -383,6 +400,29 @@ class GatewayTest extends TestCase
             'amount' => '1.00',
             'credit_card' => $this->visa,
             'expdate' => '2012',
+            'threeds_server_trans_id' => '4a7fa105-9df0-4526-8859-bb295ea7bead'
+        ];
+        $response = $gateway->cavvPurchase($params);
+
+        $this->assertEquals(Response::class, get_class($response));
+        $this->assertTrue($response->successful);
+    }
+
+    /** @test */
+    public function it_can_get_cavv_purchase_status()
+    {
+        $params = ['environment' => $this->environment, 'cvd' => false, 'cavv' => true];
+        $gateway = Moneris::create($this->id, $this->token, $params);
+        $params = [
+            'cavv' => 'kBABApFSYyd4l2eQQFJjAAAAAAA=',
+            'cvd' => '111',
+            'amount' => '1.00',
+            'credit_card' => $this->visa,
+            'expdate' => '2012',
+            'threeds_server_trans_id' => '4a7fa105-9df0-4526-8859-bb295ea7bead',
+
+            'order_id' => '1234-5678966ce1219a0dba2.78471611',
+            'status_check' => 'true'
         ];
         $response = $gateway->cavvPurchase($params);
 

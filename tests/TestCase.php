@@ -45,9 +45,9 @@ class TestCase extends PHPUnit_Framework_TestCase
 
         $this->amex = '373599005095005';
         $this->mastercard = '5454545454545454';
-        $this->visa = '4242424242424242';
+        $this->visa = '4365729291041247';
 
-        $this->id = 'store2';
+        $this->id = 'store3';
         $this->token = 'yesguy';
         $this->environment = Moneris::ENV_TESTING;
     }

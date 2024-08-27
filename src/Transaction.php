@@ -204,6 +204,12 @@ class Transaction
         $xml->addChild('store_id', $gateway->id);
         $xml->addChild('api_token', $gateway->token);
 
+        // Used for retrieve order/transaction（获取订单状态。查验是否支付成功）
+        if(isset($params['status_check'])){
+            $xml->addChild('status_check', $params['status_check']);
+            unset($params['status_check']);
+        }
+
         $type = $xml->addChild($params['type']);
         $efraud = in_array(
             $params['type'],
