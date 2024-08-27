@@ -108,10 +108,7 @@ Do not resend the Status Check request if it has timed out. Additional investiga
 ```php
 $params = [
     'order_id' => '1234-56789',
-    'amount' => '1.00',
-    'credit_card' => '4242424242424242',
-    'expiry_month' => '12',
-    'expiry_year' => '20',
+    'amount' => '1.00',  // optional: can search for specific order with amount
     'status_check' => 'true' // Status Check is a connection object value that allows merchants to verify whether a previously sent transaction was processed successfully.
 ];
 

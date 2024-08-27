@@ -414,14 +414,8 @@ class GatewayTest extends TestCase
         $params = ['environment' => $this->environment, 'cvd' => false, 'cavv' => true];
         $gateway = Moneris::create($this->id, $this->token, $params);
         $params = [
-            'cavv' => 'kBABApFSYyd4l2eQQFJjAAAAAAA=',
-            'cvd' => '111',
-            'amount' => '1.00',
-            'credit_card' => $this->visa,
-            'expdate' => '2012',
-            'threeds_server_trans_id' => '4a7fa105-9df0-4526-8859-bb295ea7bead',
-
-            'order_id' => '1234-5678966ce1219a0dba2.78471611',
+            'amount' => '11.00',
+            'order_id' => '1234-5678966ce2c66eff8d1.43283641',
             'status_check' => 'true'
         ];
         $response = $gateway->cavvPurchase($params);
