@@ -362,65 +362,66 @@ class Transaction
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
-
-                    $errors[] = isset($params['pan']) ? null : [
-                        'field' => 'credit_card',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    $errors[] = isset($params['amount']) ? null : [
-                        'field' => 'amount',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    $errors[] = isset($params['expdate']) ? null : [
-                        'field' => 'expdate',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    if ($this->gateway->avs) {
-                        $errors[] = isset($params['avs_street_number']) ? null : [
-                            'field' => 'avs_street_number',
+                    if(!isset($params['status_check'])){
+                        $errors[] = isset($params['pan']) ? null : [
+                            'field' => 'credit_card',
                             'code' => self::PARAMETER_NOT_SET,
                             'title' => 'not_set'
                         ];
 
-                        $errors[] = isset($params['avs_street_name']) ? null : [
-                            'field' => 'avs_street_name',
+                        $errors[] = isset($params['amount']) ? null : [
+                            'field' => 'amount',
                             'code' => self::PARAMETER_NOT_SET,
                             'title' => 'not_set'
                         ];
 
-                        $errors[] = isset($params['avs_zipcode']) ? null : [
-                            'field' => 'avs_zipcode',
-                            'code' => self::PARAMETER_NOT_SET,
-                            'title' => 'not_set'
-                        ];
-                    }
-
-                    if ($this->gateway->cvd) {
-                        $errors[] = isset($params['cvd']) ? null : [
-                            'field' => 'cvd',
-                            'code' => self::PARAMETER_NOT_SET,
-                            'title' => 'not_set'
-                        ];
-                    }
-
-                    if ($this->gateway->cof) {
-                        $errors[] = isset($params['payment_indicator']) ? null : [
-                            'field' => 'payment_indicator',
+                        $errors[] = isset($params['expdate']) ? null : [
+                            'field' => 'expdate',
                             'code' => self::PARAMETER_NOT_SET,
                             'title' => 'not_set'
                         ];
 
-                        $errors[] = isset($params['payment_information']) ? null : [
-                            'field' => 'payment_information',
-                            'code' => self::PARAMETER_NOT_SET,
-                            'title' => 'not_set'
-                        ];
+                        if ($this->gateway->avs) {
+                            $errors[] = isset($params['avs_street_number']) ? null : [
+                                'field' => 'avs_street_number',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+
+                            $errors[] = isset($params['avs_street_name']) ? null : [
+                                'field' => 'avs_street_name',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+
+                            $errors[] = isset($params['avs_zipcode']) ? null : [
+                                'field' => 'avs_zipcode',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+                        }
+
+                        if ($this->gateway->cvd) {
+                            $errors[] = isset($params['cvd']) ? null : [
+                                'field' => 'cvd',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+                        }
+
+                        if ($this->gateway->cof) {
+                            $errors[] = isset($params['payment_indicator']) ? null : [
+                                'field' => 'payment_indicator',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+
+                            $errors[] = isset($params['payment_information']) ? null : [
+                                'field' => 'payment_information',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+                        }
                     }
 
                     break;
@@ -623,138 +624,143 @@ class Transaction
                     break;
                 case 'res_preauth_cc':
                 case 'res_purchase_cc':
-                    $errors[] = isset($params['data_key']) ? null : [
-                        'field' => 'data_key',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
                     $errors[] = isset($params['order_id']) ? null : [
                         'field' => 'order_id',
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
 
-                    $errors[] = isset($params['amount']) ? null : [
-                        'field' => 'amount',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    if ($this->gateway->avs) {
-                        $errors[] = isset($params['avs_street_number']) ? null : [
-                            'field' => 'avs_street_number',
+                    if(!isset($params['status_check'])){
+                        $errors[] = isset($params['data_key']) ? null : [
+                            'field' => 'data_key',
                             'code' => self::PARAMETER_NOT_SET,
                             'title' => 'not_set'
                         ];
 
-                        $errors[] = isset($params['avs_street_name']) ? null : [
-                            'field' => 'avs_street_name',
+                        $errors[] = isset($params['amount']) ? null : [
+                            'field' => 'amount',
                             'code' => self::PARAMETER_NOT_SET,
                             'title' => 'not_set'
                         ];
 
-                        $errors[] = isset($params['avs_zipcode']) ? null : [
-                            'field' => 'avs_zipcode',
-                            'code' => self::PARAMETER_NOT_SET,
-                            'title' => 'not_set'
-                        ];
+                        if ($this->gateway->avs) {
+                            $errors[] = isset($params['avs_street_number']) ? null : [
+                                'field' => 'avs_street_number',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+
+                            $errors[] = isset($params['avs_street_name']) ? null : [
+                                'field' => 'avs_street_name',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+
+                            $errors[] = isset($params['avs_zipcode']) ? null : [
+                                'field' => 'avs_zipcode',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+                        }
+
+                        if ($this->gateway->cvd) {
+                            $errors[] = isset($params['cvd']) ? null : [
+                                'field' => 'cvd',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+                        }
+
+                        if ($this->gateway->cof) {
+                            $errors[] = isset($params['payment_indicator']) ? null : [
+                                'field' => 'payment_indicator',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+
+                            $errors[] = isset($params['payment_information']) ? null : [
+                                'field' => 'payment_information',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+                        }
                     }
 
-                    if ($this->gateway->cvd) {
-                        $errors[] = isset($params['cvd']) ? null : [
-                            'field' => 'cvd',
-                            'code' => self::PARAMETER_NOT_SET,
-                            'title' => 'not_set'
-                        ];
-                    }
-
-                    if ($this->gateway->cof) {
-                        $errors[] = isset($params['payment_indicator']) ? null : [
-                            'field' => 'payment_indicator',
-                            'code' => self::PARAMETER_NOT_SET,
-                            'title' => 'not_set'
-                        ];
-
-                        $errors[] = isset($params['payment_information']) ? null : [
-                            'field' => 'payment_information',
-                            'code' => self::PARAMETER_NOT_SET,
-                            'title' => 'not_set'
-                        ];
-                    }
                     break;
                 case 'res_cavv_preauth_cc':
                 case 'res_cavv_purchase_cc':
-                    $errors[] = isset($params['data_key']) ? null : [
-                        'field' => 'data_key',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
                     $errors[] = isset($params['order_id']) ? null : [
                         'field' => 'order_id',
                         'code' => self::PARAMETER_NOT_SET,
                         'title' => 'not_set'
                     ];
 
-                    $errors[] = isset($params['amount']) ? null : [
-                        'field' => 'amount',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    $errors[] = isset($params['cavv']) ? null : [
-                        'field' => 'cavv',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    $errors[] = isset($params['threeds_server_trans_id']) ? null : [
-                        'field' => 'threeds_server_trans_id',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    if ($this->gateway->avs) {
-                        $errors[] = isset($params['avs_street_number']) ? null : [
-                            'field' => 'avs_street_number',
+                    if(!isset($params['status_check'])){
+                        $errors[] = isset($params['data_key']) ? null : [
+                            'field' => 'data_key',
                             'code' => self::PARAMETER_NOT_SET,
                             'title' => 'not_set'
                         ];
 
-                        $errors[] = isset($params['avs_street_name']) ? null : [
-                            'field' => 'avs_street_name',
+                        $errors[] = isset($params['amount']) ? null : [
+                            'field' => 'amount',
                             'code' => self::PARAMETER_NOT_SET,
                             'title' => 'not_set'
                         ];
 
-                        $errors[] = isset($params['avs_zipcode']) ? null : [
-                            'field' => 'avs_zipcode',
-                            'code' => self::PARAMETER_NOT_SET,
-                            'title' => 'not_set'
-                        ];
-                    }
-
-                    if ($this->gateway->cvd) {
-                        $errors[] = isset($params['cvd']) ? null : [
-                            'field' => 'cvd',
-                            'code' => self::PARAMETER_NOT_SET,
-                            'title' => 'not_set'
-                        ];
-                    }
-
-                    if ($this->gateway->cof) {
-                        $errors[] = isset($params['payment_indicator']) ? null : [
-                            'field' => 'payment_indicator',
+                        $errors[] = isset($params['cavv']) ? null : [
+                            'field' => 'cavv',
                             'code' => self::PARAMETER_NOT_SET,
                             'title' => 'not_set'
                         ];
 
-                        $errors[] = isset($params['payment_information']) ? null : [
-                            'field' => 'payment_information',
+                        $errors[] = isset($params['threeds_server_trans_id']) ? null : [
+                            'field' => 'threeds_server_trans_id',
                             'code' => self::PARAMETER_NOT_SET,
                             'title' => 'not_set'
                         ];
+
+                        if ($this->gateway->avs) {
+                            $errors[] = isset($params['avs_street_number']) ? null : [
+                                'field' => 'avs_street_number',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+
+                            $errors[] = isset($params['avs_street_name']) ? null : [
+                                'field' => 'avs_street_name',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+
+                            $errors[] = isset($params['avs_zipcode']) ? null : [
+                                'field' => 'avs_zipcode',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+                        }
+
+                        if ($this->gateway->cvd) {
+                            $errors[] = isset($params['cvd']) ? null : [
+                                'field' => 'cvd',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+                        }
+
+                        if ($this->gateway->cof) {
+                            $errors[] = isset($params['payment_indicator']) ? null : [
+                                'field' => 'payment_indicator',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+
+                            $errors[] = isset($params['payment_information']) ? null : [
+                                'field' => 'payment_information',
+                                'code' => self::PARAMETER_NOT_SET,
+                                'title' => 'not_set'
+                            ];
+                        }
                     }
                     break;    
                 case 'applepay_token_purchase':
@@ -840,78 +846,80 @@ class Transaction
                         'title' => 'not_set'
                     ];
 
-                    $errors[] = isset($params['cardholder_name']) ? null : [
-                        'field' => 'cardholder_name',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    $errors[] = isset($params['pan']) || isset($params['data_key']) ? null : [
-                        'field' => 'credit_card',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    $errors[] = isset($params['expdate']) ? null : [
-                        'field' => 'expdate',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    $errors[] = isset($params['amount']) ? null : [
-                        'field' => 'amount',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    $errors[] = isset($params['threeds_completion_ind']) ? null : [
-                        'field' => 'threeds_completion_ind',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    $errors[] = isset($params['request_type']) ? null : [
-                        'field' => 'request_type',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    $errors[] = isset($params['notification_url']) ? null : [
-                        'field' => 'notification_url',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-
-                    $errors[] = isset($params['challenge_windowsize']) ? null : [
-                        'field' => 'challenge_windowsize',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['browser_useragent']) ? null : [
-                        'field' => 'browser_useragent',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['browser_java_enabled']) ? null : [
-                        'field' => 'browser_java_enabled',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['browser_screen_height']) ? null : [
-                        'field' => 'browser_screen_height',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['browser_screen_width']) ? null : [
-                        'field' => 'browser_screen_width',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
-                    $errors[] = isset($params['browser_language']) ? null : [
-                        'field' => 'browser_language',
-                        'code' => self::PARAMETER_NOT_SET,
-                        'title' => 'not_set'
-                    ];
+                    if(!isset($params['status_check'])){
+                        $errors[] = isset($params['cardholder_name']) ? null : [
+                            'field' => 'cardholder_name',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+    
+                        $errors[] = isset($params['pan']) || isset($params['data_key']) ? null : [
+                            'field' => 'credit_card',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+    
+                        $errors[] = isset($params['expdate']) ? null : [
+                            'field' => 'expdate',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+    
+                        $errors[] = isset($params['amount']) ? null : [
+                            'field' => 'amount',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+    
+                        $errors[] = isset($params['threeds_completion_ind']) ? null : [
+                            'field' => 'threeds_completion_ind',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+    
+                        $errors[] = isset($params['request_type']) ? null : [
+                            'field' => 'request_type',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+    
+                        $errors[] = isset($params['notification_url']) ? null : [
+                            'field' => 'notification_url',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+    
+                        $errors[] = isset($params['challenge_windowsize']) ? null : [
+                            'field' => 'challenge_windowsize',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+                        $errors[] = isset($params['browser_useragent']) ? null : [
+                            'field' => 'browser_useragent',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+                        $errors[] = isset($params['browser_java_enabled']) ? null : [
+                            'field' => 'browser_java_enabled',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+                        $errors[] = isset($params['browser_screen_height']) ? null : [
+                            'field' => 'browser_screen_height',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+                        $errors[] = isset($params['browser_screen_width']) ? null : [
+                            'field' => 'browser_screen_width',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+                        $errors[] = isset($params['browser_language']) ? null : [
+                            'field' => 'browser_language',
+                            'code' => self::PARAMETER_NOT_SET,
+                            'title' => 'not_set'
+                        ];
+                    }
 
                     break;
                 case 'cavv_lookup':
