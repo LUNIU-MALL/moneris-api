@@ -199,6 +199,7 @@ class Transaction
         $params = $this->params;
 
         $type = $this->getType($this->params['type']);
+        $is_status_check = false;
 
         $xml = new SimpleXMLElement("<$type/>");
         $xml->addChild('store_id', $gateway->id);
@@ -206,6 +207,7 @@ class Transaction
 
         // Used for retrieve order/transaction（获取订单状态。查验是否支付成功）
         if(isset($params['status_check'])){
+            $is_status_check = true;
             $xml->addChild('status_check', $params['status_check']);
             unset($params['status_check']);
         }
@@ -235,14 +237,14 @@ class Transaction
         );
         unset($params['type']);
 
-        if ($gateway->cvd && $efraud) {
+        if (!$is_status_check && $gateway->cvd && $efraud) {
             $cvd = $type->addChild('cvd_info');
             $cvd->addChild('cvd_indicator', '1');
             $cvd->addChild('cvd_value', $params['cvd']);
             unset($params['cvd']);
         }
 
-        if ($gateway->avs && $efraud) {
+        if (!$is_status_check && $gateway->avs && $efraud) {
             $avs = $type->addChild('avs_info');
 
             foreach ($params as $key => $value) {
@@ -255,7 +257,7 @@ class Transaction
             }
         }
 
-        if ($gateway->cof && ($efraud || $cc_action)) {
+        if (!$is_status_check && $gateway->cof && ($efraud || $cc_action)) {
             $cofInfo = $type->addChild('cof_info');
             if (!empty($params['payment_indicator'])) {
                 $cofInfo->addChild('payment_indicator', $params['payment_indicator']);
