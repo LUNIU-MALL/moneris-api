@@ -95,6 +95,30 @@ $params = [
 $response = $gateway->purchase($params);
 ```
 
+### Purchase (Retrieve Transaction)
+
+Status Check is a connection object value that allows merchants to verify whether a previously sent transaction was processed successfully. To submit a Status Check request, resend the original transaction with all the same parameter values, but set the status check value to either true or false. Once set to “true”, the gateway will check the status of a transaction that has an order_id that matches the one passed.
+If the transaction is found, the gateway will respond with the specifics of that transaction.
+If the transaction is not found, the gateway will respond with a not found message.
+Once it is set to “false”, the transaction will process as a new transaction.
+Things to consider:
+The Status Check request should only be used once and immediately (within 2 minutes) after the last transaction that had failed.
+Do not resend the Status Check request if it has timed out. Additional investigation is required.
+
+```php
+$params = [
+    'order_id' => '1234-56789',
+    'amount' => '1.00',
+    'credit_card' => '4242424242424242',
+    'expiry_month' => '12',
+    'expiry_year' => '20',
+    'status_check' => 'true' // Status Check is a connection object value that allows merchants to verify whether a previously sent transaction was processed successfully.
+];
+
+$response = $gateway->purchase($params);
+```
+
+
 ### Pre-Authorization
 
 ```php
