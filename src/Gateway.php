@@ -100,7 +100,7 @@ class Gateway
     protected $isMPI2 = false;
 
     /**
-     * 3-D Secure 2.0 TransStatus Codes
+     * 3-D Secure 2.2 TransStatus Codes
      * [Y, A, C, U, N, R]
      * A TransStatus = “Y” or “A” means the website can proceed immediately to the financial transaction with the CAVV value provided. This is a frictionless transaction flow without presenting a challenge.
      * A TransStatus = “C” indicates that the cardholder must be presented a challenge. To present the challenge, you must POST a <form> with a “creq” field, which contains the ChallengeData, to the URL defined in the ChallengeURL field.
@@ -108,7 +108,7 @@ class Gateway
 
      * @var array
      */
-    protected $transStatusCode = ['Y', 'A', 'C'];
+    protected $transStatusCode = ['Y', 'A', 'C', 'D'];
 
     /**
      * Create a new Moneris instance.
@@ -372,7 +372,7 @@ class Gateway
     }
 
     /**
-     * The CardLookup request verifies the applicability of 3DS 2.0 on the card and returns the 3DS Method URL. 
+     * The CardLookup request verifies the applicability of 3DS 2.2 on the card and returns the 3DS Method URL. 
      * That is used for device fingerprinting. This request is optional, it may increase the chance of a frictionless flow.
      * 
      * @param array $params
@@ -397,10 +397,9 @@ class Gateway
      * 
      * $template = array (
      *      "order_id" => null,
-     *      "data_key" => null,
      *      "cardholder_name" => null,
      *      "pan" => null,
-     *      "expdate" => null,
+     *      "data_key" => null,
      *      "amount" => null,
      *      "threeds_completion_ind" => null,
      *      "request_type" => null,

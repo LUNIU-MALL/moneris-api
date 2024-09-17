@@ -721,48 +721,6 @@ class Transaction
                             'code' => self::PARAMETER_NOT_SET,
                             'title' => 'not_set'
                         ];
-
-                        if ($this->gateway->avs) {
-                            $errors[] = isset($params['avs_street_number']) ? null : [
-                                'field' => 'avs_street_number',
-                                'code' => self::PARAMETER_NOT_SET,
-                                'title' => 'not_set'
-                            ];
-
-                            $errors[] = isset($params['avs_street_name']) ? null : [
-                                'field' => 'avs_street_name',
-                                'code' => self::PARAMETER_NOT_SET,
-                                'title' => 'not_set'
-                            ];
-
-                            $errors[] = isset($params['avs_zipcode']) ? null : [
-                                'field' => 'avs_zipcode',
-                                'code' => self::PARAMETER_NOT_SET,
-                                'title' => 'not_set'
-                            ];
-                        }
-
-                        if ($this->gateway->cvd) {
-                            $errors[] = isset($params['cvd']) ? null : [
-                                'field' => 'cvd',
-                                'code' => self::PARAMETER_NOT_SET,
-                                'title' => 'not_set'
-                            ];
-                        }
-
-                        if ($this->gateway->cof) {
-                            $errors[] = isset($params['payment_indicator']) ? null : [
-                                'field' => 'payment_indicator',
-                                'code' => self::PARAMETER_NOT_SET,
-                                'title' => 'not_set'
-                            ];
-
-                            $errors[] = isset($params['payment_information']) ? null : [
-                                'field' => 'payment_information',
-                                'code' => self::PARAMETER_NOT_SET,
-                                'title' => 'not_set'
-                            ];
-                        }
                     }
                     break;    
                 case 'applepay_token_purchase':
@@ -857,12 +815,6 @@ class Transaction
     
                         $errors[] = isset($params['pan']) || isset($params['data_key']) ? null : [
                             'field' => 'credit_card',
-                            'code' => self::PARAMETER_NOT_SET,
-                            'title' => 'not_set'
-                        ];
-    
-                        $errors[] = isset($params['expdate']) ? null : [
-                            'field' => 'expdate',
                             'code' => self::PARAMETER_NOT_SET,
                             'title' => 'not_set'
                         ];

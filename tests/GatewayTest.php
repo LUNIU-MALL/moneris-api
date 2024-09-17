@@ -355,10 +355,8 @@ class GatewayTest extends TestCase
         $params = [
             'order_id' => uniqid('1234-56789', true),
             'cardholder_name' => 'CardHolder Name',
-            'credit_card' => $this->visa,
-            // 'data_key' => 'xxxxxx', // Vault
-            'expiry_month' => '12',
-            'expiry_year' => '25',
+            'credit_card' => '371783832095949',
+            // 'data_key' => '0l3onN4pgvGUB1xOwR2Fu1Wv9', // Vault
             'amount' => '1.00',
             'notification_url' => 'https://yournotificationurl.com',
             'browser_useragent' => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36\\",

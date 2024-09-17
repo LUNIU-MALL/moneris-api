@@ -162,7 +162,7 @@ $response = $gateway->purchase($params);
 $response = $gateway->void($response->transaction);
 ```
 
-### 3D-Secure 2.0
+### 3D-Secure 2.2
 
 #### Steps
 1. Make `Card Lookup` request, get ThreeDSMethodURL and ThreeDSMethodData
@@ -209,8 +209,6 @@ $params = [
     'cardholder_name' => 'CardHolder Name',
     'credit_card' => '4242424242424242',
     // 'data_key' => 'xxxxxx', // Vault
-    'expiry_month' => '12',
-    'expiry_year' => '25',
     'amount' => '1.00',
     'notification_url' => 'https://yournotificationurl.com',
     'browser_useragent' => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36\\",
