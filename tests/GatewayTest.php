@@ -363,7 +363,7 @@ class GatewayTest extends TestCase
             'browser_java_enabled' => "true",
             'browser_screen_height' => '800',
             'browser_screen_width' => '1920',
-            'browser_language' => 'en_US'
+            'browser_language' => 'en'
         ];
         $response = $gateway->mpiThreeDSAuthentication($params);
 

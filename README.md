@@ -215,7 +215,7 @@ $params = [
     'browser_java_enabled' => "true",
     'browser_screen_height' => '800',
     'browser_screen_width' => '1920',
-    'browser_language' => 'en_US',
+    'browser_language' => 'en',
     'threeds_completion_ind' => 'Y', //(Y|N|U) indicates whether 3ds method mpiThreeDSAuthentication was successfully completed
     'request_type' => '01', // (01=payment|02=recur)
     'browser_java_enabled' => "true",
