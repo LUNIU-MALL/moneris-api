@@ -57,9 +57,10 @@ class CreditCard
      *
      * @return $this
      */
-    public function attach(Customer $customer)
+    public function attach(Customer $customer, AvsInfo $avsInfo = null)
     {
         $this->customer = $customer;
+        $this->avsInfo = $avsInfo;
 
         return $this;
     }

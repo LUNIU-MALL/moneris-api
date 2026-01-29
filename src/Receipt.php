@@ -124,7 +124,7 @@ class Receipt
                 'month' => isset($data['expdate']) ? substr($data['expdate'], -2, 2) : null,
                 'year' => isset($data['expdate']) ? substr($data['expdate'], 0, 2) : null,
             ],
-            'avs' => [
+            'avs_info' => [
                 'street_number' => isset($data['avs_street_number']) ? (is_string($data['avs_street_number']) ? $data['avs_street_number'] : $data['avs_street_number']->__toString()) : null,
                 'street_name' => isset($data['avs_street_name']) ? (is_string($data['avs_street_name']) ? $data['avs_street_name'] : $data['avs_street_name']->__toString()) : null,
                 'zipcode' => isset($data['avs_zipcode']) ? (is_string($data['avs_zipcode']) ? $data['avs_zipcode'] : $data['avs_zipcode']->__toString()) : null,
