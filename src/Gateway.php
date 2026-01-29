@@ -419,10 +419,10 @@ class Gateway
     {
         $this->isMPI2 = true;
         $default = [
-            'threeds_completion_ind' => 'Y', //(Y|N|U) indicates whether 3ds method MpiCardLookup was successfully completed
+            // 'threeds_completion_ind' => 'Y', //(Y|N|U) indicates whether 3ds method MpiCardLookup was successfully completed
             'request_type' => '01', // (01=payment|02=recur)
             'browser_java_enabled' => "true",
-            'challenge_windowsize' => '02' //(01 = 250 x 400, 02 = 390 x 400, 03 = 500 x 600, 04 = 600 x 400, 05 = Full screen)
+            'challenge_windowsize' => '05' //(01 = 250 x 400, 02 = 390 x 400, 03 = 500 x 600, 04 = 600 x 400, 05 = Full screen)
         ];
         $params = array_merge($default, $params);
         $params = array_merge($params, [

@@ -355,15 +355,34 @@ class GatewayTest extends TestCase
         $params = [
             'order_id' => uniqid('1234-56789', true),
             'cardholder_name' => 'CardHolder Name',
-            'credit_card' => '371783832095949',
+            'credit_card' => '4357495851021892',
             // 'data_key' => '0l3onN4pgvGUB1xOwR2Fu1Wv9', // Vault
             'amount' => '1.00',
             'notification_url' => 'https://yournotificationurl.com',
+
             'browser_useragent' => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36\\",
             'browser_java_enabled' => "true",
             'browser_screen_height' => '800',
             'browser_screen_width' => '1920',
-            'browser_language' => 'en'
+            'browser_language' => 'en',
+            'browser_ip'=> '192.168.0.1', //IPv4 or IPv6
+            'challenge_window_size' => '05',
+
+            'message_category' => '01', //01=payment, 02=authentication
+            'device_channel' => '02', //02 = Browser (BRW) 03 = 3DS Requestor Initiated (3RI) request type
+            'threeds_completion_ind' => 'U',
+            'request_type' => '01', //01=payment|02=recur
+            'threeds_version' => '2.0.0',
+            /**
+             * Indicates whether a browser-based challenge is requested for this transaction. Standard is “01”
+             * 01 = No preference
+             * 02 = No challenge requested
+             * 03 = Challenge requested: 3DS Requestor Preference
+             * 04 = Challenge requested: Mandate
+             * 
+             * */
+            'request_challenge' => '03'
+
         ];
         $response = $gateway->mpiThreeDSAuthentication($params);
 
@@ -389,11 +408,10 @@ class GatewayTest extends TestCase
     /** @test */
     public function it_can_make_a_cavv_purchase_and_receive_a_response()
     {
-        $params = ['environment' => $this->environment, 'cvd' => true, 'cavv' => true];
+        $params = ['environment' => $this->environment, 'cvd' => false, 'cavv' => true];
         $gateway = Moneris::create($this->id, $this->token, $params);
         $params = [
             'cavv' => 'kBABApFSYyd4l2eQQFJjAAAAAAA=',
-            'cvd' => '111',
             'order_id' => uniqid('1234-56789', true),
             'amount' => '1.00',
             'credit_card' => $this->visa,
@@ -420,5 +438,68 @@ class GatewayTest extends TestCase
 
         $this->assertEquals(Response::class, get_class($response));
         $this->assertTrue($response->successful);
+    }
+
+    /** @test */
+    public function it_can_make_mpi_3ds_authentication_with_purchase_and_receive_a_response()
+    {
+        $order_id = uniqid('1234-56789', true);
+        $params = ['environment' => $this->environment, 'cvd' => false];
+        $gateway = Moneris::create($this->id, $this->token, $params);
+        $params = [
+            'order_id' => $order_id,
+            'cardholder_name' => 'CardHolder Name',
+            'credit_card' => $this->visa,
+            // 'data_key' => '0l3onN4pgvGUB1xOwR2Fu1Wv9', // Vault
+            'amount' => '1.00',
+            'notification_url' => 'https://yournotificationurl.com',
+
+            'browser_useragent' => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36\\",
+            'browser_java_enabled' => "true",
+            'browser_screen_height' => '800',
+            'browser_screen_width' => '1920',
+            'browser_language' => 'en',
+            'browser_ip'=> '192.168.0.1', //IPv4 or IPv6
+            'challenge_window_size' => '05',
+
+            'message_category' => '01', //01=payment, 02=authentication
+            'device_channel' => '02', //02 = Browser (BRW) 03 = 3DS Requestor Initiated (3RI) request type
+            'threeds_completion_ind' => 'U',
+            'request_type' => '01', //01=payment|02=recur
+            'threeds_version' => '2.0.0',
+            /**
+             * Indicates whether a browser-based challenge is requested for this transaction. Standard is “01”
+             * 01 = No preference
+             * 02 = No challenge requested
+             * 03 = Challenge requested: 3DS Requestor Preference
+             * 04 = Challenge requested: Mandate
+             * 
+             * */
+            'request_challenge' => '03'
+
+        ];
+        $response = $gateway->mpiThreeDSAuthentication($params);
+
+        
+
+        $this->assertEquals(Response::class, get_class($response));
+        $this->assertTrue($response->successful);
+
+        if($response->successful && $response->receipt()->read('trans_status') === 'Y'){
+            $params = ['environment' => $this->environment, 'cvd' => false, 'cavv' => true];
+            $gateway = Moneris::create($this->id, $this->token, $params);
+            $params = [
+                'cavv' => $response->receipt()->read('cavv'),
+                'order_id' => $order_id,
+                'amount' => '1.00',
+                'credit_card' => $this->visa,
+                'expdate' => '2012',
+                'threeds_server_trans_id' => $response->receipt()->read('3ds_trans_id')
+            ];
+            $purchaseResponse = $gateway->cavvPurchase($params);
+
+            $this->assertEquals(Response::class, get_class($purchaseResponse));
+            $this->assertTrue($purchaseResponse->successful);
+        }
     }
 }

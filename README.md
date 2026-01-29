@@ -207,19 +207,33 @@ $response = $gateway->mpiCardLookup($params);
 $params = [
     'order_id' => uniqid('1234-56789', true),
     'cardholder_name' => 'CardHolder Name',
-    'credit_card' => '4242424242424242',
-    // 'data_key' => 'xxxxxx', // Vault
+    'credit_card' => '371783832095949',
+    // 'data_key' => '0l3onN4pgvGUB1xOwR2Fu1Wv9', // Vault
     'amount' => '1.00',
     'notification_url' => 'https://yournotificationurl.com',
+
     'browser_useragent' => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36\\",
     'browser_java_enabled' => "true",
     'browser_screen_height' => '800',
     'browser_screen_width' => '1920',
     'browser_language' => 'en',
-    'threeds_completion_ind' => 'Y', //(Y|N|U) indicates whether 3ds method mpiThreeDSAuthentication was successfully completed
-    'request_type' => '01', // (01=payment|02=recur)
-    'browser_java_enabled' => "true",
-    'challenge_windowsize' => '02' //(01 = 250 x 400, 02 = 390 x 400, 03 = 500 x 600, 04 = 600 x 400, 05 = Full screen)
+    'browser_ip'=> '192.168.0.1', //IPv4 or IPv6
+    'challenge_window_size' => '05',
+
+    'message_category' => '01', //01=payment, 02=authentication
+    'device_channel' => '02', //02 = Browser (BRW) 03 = 3DS Requestor Initiated (3RI) request type
+    'threeds_completion_ind' => 'U',
+    'request_type' => '01', //01=payment|02=recur
+    'threeds_version' => '2.2.0',
+    /**
+    * Indicates whether a browser-based challenge is requested for this transaction. Standard is “01”
+    * 01 = No preference
+    * 02 = No challenge requested
+    * 03 = Challenge requested: 3DS Requestor Preference
+    * 04 = Challenge requested: Mandate
+    * 
+    * */
+    'request_challenge' => '03'
 ];
 
 $response = $gateway->mpiThreeDSAuthentication($params);
