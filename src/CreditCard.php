@@ -25,6 +25,11 @@ class CreditCard
     protected $customer = null;
 
     /**
+     * @var \LuniuMall\Moneris\AvsInfo|null
+     */
+    protected $avsInfo = null;
+
+    /**
      * @var string
      */
     protected $expiry;
