@@ -5,6 +5,7 @@ use LuniuMall\Moneris\Vault;
 use LuniuMall\Moneris\Gateway;
 use LuniuMall\Moneris\Moneris;
 use LuniuMall\Moneris\Response;
+use LuniuMall\Moneris\AvsInfo;
 
 class GatewayTest extends TestCase
 {
@@ -21,6 +22,13 @@ class GatewayTest extends TestCase
      * @var array
      */
     protected $customer;
+
+    /**
+     * The avs info for avs info requests.
+     *
+     * @var array
+     */
+    protected $avsInfo;
 
     /**
      * The Moneris gateway.
@@ -76,6 +84,12 @@ class GatewayTest extends TestCase
             'billing' => $this->billing,
             'shipping' => $this->billing
         ];
+        $this->avsInfo = AvsInfo::create([
+            'street_number' => '123',
+            'street_name' => 'Fake Street',
+            'zipcode' => 'X0X0X0',
+            // Additional AVS Info fields
+        ]);
     }
 
     /** @test */
@@ -164,14 +178,12 @@ class GatewayTest extends TestCase
         $params = ['environment' => $this->environment, 'avs' => true];
         $gateway = Moneris::create($this->id, $this->token, $params);
         $params = [
-            'avs_street_number' => '123',
-            'avs_street_name' => 'Fake Street',
-            'avs_zipcode' => 'X0X0X0',
             'order_id' => uniqid('1234-56789', true),
             'amount' => '1.00',
             'credit_card' => $this->visa,
             'expdate' => '2012',
         ];
+        $params = array_merge($params, $this->avsInfo->toArray());
         $response = $gateway->purchase($params);
 
         $this->assertEquals(Response::class, get_class($response));
@@ -228,14 +240,12 @@ class GatewayTest extends TestCase
         $params = ['environment' => $this->environment, 'avs' => true];
         $gateway = Moneris::create($this->id, $this->token, $params);
         $params = [
-            'avs_street_number' => '123',
-            'avs_street_name' => 'Fake Street',
-            'avs_zipcode' => 'X0X0X0',
             'order_id' => uniqid('1234-56789', true),
             'amount' => '1.00',
             'credit_card' => $this->visa,
             'expdate' => '2012',
         ];
+        $params = array_merge($params, $this->avsInfo->toArray());
         $response = $gateway->preauth($params);
 
         $this->assertEquals(Response::class, get_class($response));
@@ -275,14 +285,12 @@ class GatewayTest extends TestCase
         $params = ['environment' => $this->environment, 'avs' => true];
         $gateway = Moneris::create($this->id, $this->token, $params);
         $params = [
-            'avs_street_number' => '123',
-            'avs_street_name' => 'Fake Street',
-            'avs_zipcode' => 'X0X0X0',
             'order_id' => uniqid('1234-56789', true),
             'amount' => '1.00',
             'credit_card' => $this->visa,
             'expdate' => '2012',
         ];
+        $params = array_merge($params, $this->avsInfo->toArray());
         $response = $gateway->verify($params);
 
         $this->assertEquals(Response::class, get_class($response));

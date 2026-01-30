@@ -65,11 +65,13 @@ class Customer
             return $this->$property;
         }
 
-        if (isset($this->data[$property]) && !is_null($this->data[$property])) {
-            return $this->data[$property];
+        if (array_key_exists($property, $this->data)) {
+            return $this->data[$property]; // 允许返回 null
         }
 
-        throw new \InvalidArgumentException('['.get_class($this).'] does not contain a property named ['.$property.']');
+        throw new \InvalidArgumentException(
+            '[' . get_class($this) . '] does not contain a property named [' . $property . ']'
+        );
     }
 
     /**
@@ -90,5 +92,17 @@ class Customer
         } else {
             throw new \InvalidArgumentException('['.get_class($this).'] does not contain a property named ['.$property.']');
         }
+    }
+
+    public function toArray()
+    {
+        $params = [
+            'cust_id' => $this->id,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'note' => $this->note,
+        ];
+
+        return $params;
     }
 }

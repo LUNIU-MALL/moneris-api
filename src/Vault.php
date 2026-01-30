@@ -45,20 +45,11 @@ class Vault extends Gateway
         ]);
 
         if (!is_null($card->customer)) {
-            $params = array_merge($params, [
-                'cust_id' => $card->customer->id,
-                'phone' => $card->customer->phone,
-                'email' => $card->customer->email,
-                'note' => $card->customer->note,
-            ]);
+            $params = array_merge($params, $card->customer->toArray());
         }
 
         if (!is_null($card->avsInfo)) {
-            $params = array_merge($params, [
-                'avs_street_number' => $card->avsInfo->street_number,
-                'avs_street_name' => $card->avsInfo->street_name,
-                'avs_zipcode' => $card->customer->zipcode,
-            ]);
+            $params = array_merge($params, $card->avsInfo->toArray());
         }
 
 
@@ -239,12 +230,11 @@ class Vault extends Gateway
         ]);
 
         if (!is_null($card->customer)) {
-            $params = array_merge($params, [
-                'cust_id' => $card->customer->id,
-                'phone' => $card->customer->phone,
-                'email' => $card->customer->email,
-                'note' => $card->customer->note,
-            ]);
+            $params = array_merge($params, $card->customer->toArray());
+        }
+
+        if (!is_null($card->avsInfo)) {
+            $params = array_merge($params, $card->avsInfo->toArray());
         }
 
         $transaction = $this->transaction($params);

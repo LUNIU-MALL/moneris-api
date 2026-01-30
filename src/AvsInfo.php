@@ -28,19 +28,19 @@ class AvsInfo
     {
         $this->data = $this->prepare($params, [
             // Vault AVS Info fields
-            ['property' => 'street_number', 'key' => 'avs_street_number'],
-            ['property' => 'street_name', 'key' => 'avs_street_name'],
-            ['property' => 'zipcode', 'key' => 'avs_zipcode'],
+            ['property' => 'street_number', 'key' => 'street_number'],
+            ['property' => 'street_name', 'key' => 'street_name'],
+            ['property' => 'zipcode', 'key' => 'zipcode'],
 
             // Additional AVS Info fields
-            ['property' => 'email', 'key' => 'avs_email'],
-            ['property' => 'hostname', 'key' => 'avs_hostname'],
-            ['property' => 'browser', 'key' => 'avs_browser'],
-            ['property' => 'shiptocountry', 'key' => 'avs_shiptocountry'],
-            ['property' => 'shipmethod', 'key' => 'avs_shipmethod'],
-            ['property' => 'merchprodsku', 'key' => 'avs_merchprodsku'],
-            ['property' => 'custip', 'key' => 'avs_custip'],
-            ['property' => 'custphone', 'key' => 'avs_custphone'],
+            ['property' => 'email', 'key' => 'email'],
+            ['property' => 'hostname', 'key' => 'hostname'],
+            ['property' => 'browser', 'key' => 'browser'],
+            ['property' => 'shiptocountry', 'key' => 'shiptocountry'],
+            ['property' => 'shipmethod', 'key' => 'shipmethod'],
+            ['property' => 'merchprodsku', 'key' => 'merchprodsku'],
+            ['property' => 'custip', 'key' => 'custip'],
+            ['property' => 'custphone', 'key' => 'custphone'],
         ]);
     }
 
@@ -70,8 +70,8 @@ class AvsInfo
             return $this->$property;
         }
 
-        if (isset($this->data[$property]) && !is_null($this->data[$property])) {
-            return $this->data[$property];
+        if (array_key_exists($property, $this->data)) {
+            return $this->data[$property]; // 允许返回 null
         }
 
         throw new \InvalidArgumentException('['.get_class($this).'] does not contain a property named ['.$property.']');
@@ -95,5 +95,23 @@ class AvsInfo
         } else {
             throw new \InvalidArgumentException('['.get_class($this).'] does not contain a property named ['.$property.']');
         }
+    }
+
+    public function toArray()
+    {
+        $params = [
+            'avs_street_number' => $this->street_number,
+            'avs_street_name' => $this->street_name,
+            'avs_zipcode' => $this->zipcode,
+            'avs_email' => $this->email,
+            'avs_hostname' => $this->hostname,
+            'avs_browser' => $this->browser,
+            'avs_shiptocountry' => $this->shiptocountry,
+            'avs_shipmethod' => $this->shipmethod,
+            'avs_merchprodsku' => $this->merchprodsku,
+            'avs_custip' => $this->custip,
+            'avs_custphone' => $this->custphone,
+        ];
+        return $params;
     }
 }
