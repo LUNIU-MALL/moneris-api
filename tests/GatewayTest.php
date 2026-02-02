@@ -31,6 +31,13 @@ class GatewayTest extends TestCase
     protected $avsInfo;
 
     /**
+     * The cof info for avs info requests.
+     *
+     * @var array
+     */
+    protected $cofInfo;
+
+    /**
      * The Moneris gateway.
      *
      * @var \LuniuMall\Moneris\Gateway
@@ -90,6 +97,11 @@ class GatewayTest extends TestCase
             'zipcode' => 'X0X0X0',
             // Additional AVS Info fields
         ]);
+        $this->cofInfo = [
+            'payment_indicator' => 'U',
+            'payment_information' => '2',
+            'issuer_id' => '',
+        ];
     }
 
     /** @test */
@@ -282,7 +294,7 @@ class GatewayTest extends TestCase
     /** @test */
     public function it_can_verify_a_avs_secured_card_and_receive_a_response()
     {
-        $params = ['environment' => $this->environment, 'avs' => true];
+        $params = ['environment' => $this->environment, 'avs' => true, 'cof' => true];
         $gateway = Moneris::create($this->id, $this->token, $params);
         $params = [
             'order_id' => uniqid('1234-56789', true),
@@ -290,7 +302,7 @@ class GatewayTest extends TestCase
             'credit_card' => $this->visa,
             'expdate' => '2012',
         ];
-        $params = array_merge($params, $this->avsInfo->toArray());
+        $params = array_merge($params, $this->avsInfo->toArray(), $this->cofInfo);
         $response = $gateway->verify($params);
 
         $this->assertEquals(Response::class, get_class($response));
