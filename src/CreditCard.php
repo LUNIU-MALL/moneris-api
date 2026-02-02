@@ -25,11 +25,6 @@ class CreditCard
     protected $customer = null;
 
     /**
-     * @var \LuniuMall\Moneris\AvsInfo|null
-     */
-    protected $avsInfo = null;
-
-    /**
      * @var string
      */
     protected $expiry;
@@ -62,10 +57,9 @@ class CreditCard
      *
      * @return $this
      */
-    public function attach(Customer $customer, AvsInfo $avsInfo = null)
+    public function attach(Customer $customer)
     {
         $this->customer = $customer;
-        $this->avsInfo = $avsInfo;
 
         return $this;
     }

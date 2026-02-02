@@ -48,11 +48,6 @@ class Vault extends Gateway
             $params = array_merge($params, $card->customer->toArray());
         }
 
-        if (!is_null($card->avsInfo)) {
-            $params = array_merge($params, $card->avsInfo->toArray());
-        }
-
-
         $transaction = $this->transaction($params);
 
         return $this->process($transaction);
@@ -231,10 +226,6 @@ class Vault extends Gateway
 
         if (!is_null($card->customer)) {
             $params = array_merge($params, $card->customer->toArray());
-        }
-
-        if (!is_null($card->avsInfo)) {
-            $params = array_merge($params, $card->avsInfo->toArray());
         }
 
         $transaction = $this->transaction($params);

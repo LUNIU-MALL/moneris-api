@@ -5,7 +5,6 @@ use LuniuMall\Moneris\Vault;
 use LuniuMall\Moneris\Gateway;
 use LuniuMall\Moneris\Moneris;
 use LuniuMall\Moneris\Response;
-use LuniuMall\Moneris\AvsInfo;
 
 class GatewayTest extends TestCase
 {
@@ -91,12 +90,12 @@ class GatewayTest extends TestCase
             'billing' => $this->billing,
             'shipping' => $this->billing
         ];
-        $this->avsInfo = AvsInfo::create([
-            'street_number' => '123',
-            'street_name' => 'Fake Street',
-            'zipcode' => 'X0X0X0',
+        $this->avsInfo = [
+            'avs_street_number' => '123',
+            'avs_street_name' => 'Fake Street',
+            'avs_zipcode' => 'X0X0X0',
             // Additional AVS Info fields
-        ]);
+        ];
         $this->cofInfo = [
             'payment_indicator' => 'U',
             'payment_information' => '2',
@@ -195,7 +194,7 @@ class GatewayTest extends TestCase
             'credit_card' => $this->visa,
             'expdate' => '2012',
         ];
-        $params = array_merge($params, $this->avsInfo->toArray());
+        $params = array_merge($params, $this->avsInfo);
         $response = $gateway->purchase($params);
 
         $this->assertEquals(Response::class, get_class($response));
@@ -257,7 +256,7 @@ class GatewayTest extends TestCase
             'credit_card' => $this->visa,
             'expdate' => '2012',
         ];
-        $params = array_merge($params, $this->avsInfo->toArray());
+        $params = array_merge($params, $this->avsInfo);
         $response = $gateway->preauth($params);
 
         $this->assertEquals(Response::class, get_class($response));
@@ -302,7 +301,7 @@ class GatewayTest extends TestCase
             'credit_card' => $this->visa,
             'expdate' => '2012',
         ];
-        $params = array_merge($params, $this->avsInfo->toArray(), $this->cofInfo);
+        $params = array_merge($params, $this->avsInfo, $this->cofInfo);
         $response = $gateway->verify($params);
 
         $this->assertEquals(Response::class, get_class($response));
