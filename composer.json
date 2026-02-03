@@ -1,5 +1,6 @@
 {
     "name": "luniumall/moneris-api",
+    "version": "v2.2.8",
     "description": "An easier way to consume the (truly awful) Moneris eSELECTplus API.",
     "keywords": [
         "moneris",
