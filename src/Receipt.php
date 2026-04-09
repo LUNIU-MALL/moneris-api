@@ -103,6 +103,16 @@ class Receipt
         return null;
     }
 
+    public function getSafeData()
+    {
+        $result = [
+            'params'  => $this->convertSensitiveData($this->gateway->transaction->params),
+            'receipt' => $this->convertSensitiveData($this->data),
+        ];
+
+        return $result;
+    }
+
     /**
      * Format the resolved data from the Moneris API.
      *
@@ -130,5 +140,28 @@ class Receipt
                 'zipcode' => isset($data['avs_zipcode']) ? (is_string($data['avs_zipcode']) ? $data['avs_zipcode'] : $data['avs_zipcode']->__toString()) : null,
             ]
         ];
+    }
+
+    private function convertSensitiveData($safeData)
+    {
+        $sensitiveKeys = ['pan', 'cvd', 'expdate', 'zipcode'];
+
+        foreach ($sensitiveKeys as $key) {
+            if (isset($safeData[$key])) {
+                $safeData[$key] = '********';
+            }
+        }
+        
+        // 如果 data 内部还有嵌套
+        if (isset($safeData['data'])) {
+            // foreach ($sensitiveKeys as $key) {
+            //     if (isset($safeData['data'][$key])) {
+            //         $safeData['data'][$key] = '********';
+            //     }
+            // }
+            unset($safeData['data']);
+        }
+
+        return $safeData;
     }
 }
