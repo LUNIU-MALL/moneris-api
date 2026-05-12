@@ -105,10 +105,13 @@ class Gateway
      * A TransStatus = “Y” or “A” means the website can proceed immediately to the financial transaction with the CAVV value provided. This is a frictionless transaction flow without presenting a challenge.
      * A TransStatus = “C” indicates that the cardholder must be presented a challenge. To present the challenge, you must POST a <form> with a “creq” field, which contains the ChallengeData, to the URL defined in the ChallengeURL field.
      * A TransStatus = “D” indicates that the cardholder must be presented a challenge via Decoupled Authentication. See Decoupled Authentication.
+     * A TransStatus = “U” means that Authentication could not be performed due to technical or other issue
+     * A TransStatus = “N” means that the cardholder is not enrolled in 3DS. The transaction should proceed with the CAVV value provided, but the liability shift will not be in place.
+     * A TransStatus = “R” means that Not authenticated because the Issuer is rejecting authentication and requesting that authorisation not be attempted
 
      * @var array
      */
-    protected $transStatusCode = ['Y', 'A', 'C', 'D'];
+    protected $transStatusCode = ['Y', 'A', 'C', 'D', 'U', 'N', 'R'];
 
     /**
      * Create a new Moneris instance.
